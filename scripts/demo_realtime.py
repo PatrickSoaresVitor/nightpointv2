@@ -46,7 +46,7 @@ def main() -> None:
         while time.monotonic()<deadline:
             try:frame=frames.get(timeout=.5)
             except Empty:continue
-            if frame['data'].get('version',0)>=changed['version']:
+            if frame.get('event')=='changed' and frame['data'].get('version',0)>=changed['version']:
                 matched=frame;break
         assert matched is not None,'Committed version not observed through SSE'
         reconciled=request(base,'GET',path,tokens[0])

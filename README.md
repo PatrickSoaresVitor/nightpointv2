@@ -83,6 +83,8 @@ $demo = Get-Content .artifacts/academic/current-demo.json -Raw | ConvertFrom-Jso
 .venv\Scripts\python.exe infra/seed_demo.py --run-id $demo.run_id
 ```
 
+Se o primeiro bootstrap for interrompido antes da atestação, o volume e o RunID ficam preservados. Conferir o registro `preparation.json` do alvo próprio e recuperar explicitamente com `python scripts/resume_demo.py --run-id RUN_ID`. A recuperação valida dono/volume/arquivos privados, exige a função de bootstrap concluída e repete a prova de identidade do cluster, mantendo o prazo original180s. Não cria marcador artificial, não descarta volume e recusa alvo já atestado. Não usar outroRunID ou banco por inferência.
+
 O seed usa apenasAPI, chaves idempotentes e dados fictícios: Organizador Demo(A), Piloto Demo(B), Encontro Street/Cars & Coffee/Encontro JDM e três veículos privados. Centro manual inicial emFranca, com pontos de demonstração aproximados e sem endereço privado. O seed não modifica outro ambiente.
 
 ## FrontendWeb

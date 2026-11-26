@@ -14,7 +14,7 @@ class EventsModel extends ChangeNotifier {
   List<EventRecord> get items => List.unmodifiable(_items);
   bool owned = false, loading = false, hasMore = false;
   String? error, category;
-  double longitude = 0, latitude = 0, radius = 10000;
+  double longitude = -47.4009, latitude = -20.5386, radius = 10000;
   late DateTime from;
   String? _cursor;
   int _offset = 0, _epoch = 0;

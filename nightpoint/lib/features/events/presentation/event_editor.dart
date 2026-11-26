@@ -35,8 +35,8 @@ class _EventEditorState extends State<EventEditor> {
     _place = TextEditingController(
       text: previous?.locationLabel ?? 'Ponto sintético',
     );
-    _longitude = TextEditingController(text: '${previous?.longitude ?? 0.0}');
-    _latitude = TextEditingController(text: '${previous?.latitude ?? 0.0}');
+    _longitude = TextEditingController(text: '${previous?.longitude ?? -47.4009}');
+    _latitude = TextEditingController(text: '${previous?.latitude ?? -20.5386}');
     _starts =
         previous?.startsAt.toLocal() ??
         DateTime.now().add(const Duration(days: 1));

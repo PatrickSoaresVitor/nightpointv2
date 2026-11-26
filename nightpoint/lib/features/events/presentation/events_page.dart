@@ -24,8 +24,8 @@ class EventsPage extends StatefulWidget {
 class _EventsPageState extends State<EventsPage> {
   late final EventsModel _model;
   final _filters = GlobalKey<FormState>();
-  final _longitude = TextEditingController(text: '0.0');
-  final _latitude = TextEditingController(text: '0.0');
+  final _longitude = TextEditingController(text: '-47.4009');
+  final _latitude = TextEditingController(text: '-20.5386');
   final _radius = TextEditingController(text: '10000');
   String? _category;
   late DateTime _from;
