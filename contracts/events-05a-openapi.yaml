@@ -1,0 +1,4493 @@
+openapi: 3.1.0
+info:
+  title: NightPoint Foundation
+  version: 0.1.0
+paths:
+  /api/v1/health/live:
+    get:
+      summary: Live
+      operationId: liveness
+      responses:
+        '200':
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+          headers:
+            X-Correlation-ID:
+              description: Server-generated opaque identifier
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+        '400':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              description: Server-generated opaque identifier
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+        '422':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              description: Server-generated opaque identifier
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+        '500':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              description: Server-generated opaque identifier
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+      parameters:
+      - name: X-Correlation-ID
+        in: header
+        required: false
+        schema:
+          type: string
+          maxLength: 64
+          pattern: ^[A-Za-z0-9_-]{1,64}$
+  /api/v1/health/ready:
+    get:
+      summary: Ready
+      operationId: readiness
+      responses:
+        '200':
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+          headers:
+            X-Correlation-ID:
+              description: Server-generated opaque identifier
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+        '400':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              description: Server-generated opaque identifier
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+        '422':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              description: Server-generated opaque identifier
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+        '500':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              description: Server-generated opaque identifier
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+        '503':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              description: Server-generated opaque identifier
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+      parameters:
+      - name: X-Correlation-ID
+        in: header
+        required: false
+        schema:
+          type: string
+          maxLength: 64
+          pattern: ^[A-Za-z0-9_-]{1,64}$
+  /api/v1/session:
+    get:
+      tags:
+      - identity
+      summary: Session
+      operationId: identitySession
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionOutput'
+        '400':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  type:
+                    type: string
+                    title: Type
+                  title:
+                    type: string
+                    title: Title
+                  status:
+                    type: integer
+                    title: Status
+                  detail:
+                    type: string
+                    title: Detail
+                  correlation_id:
+                    type: string
+                    title: Correlation Id
+                additionalProperties: false
+                type: object
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+        '401':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            WWW-Authenticate:
+              schema:
+                type: string
+                const: Bearer
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  type:
+                    type: string
+                    title: Type
+                  title:
+                    type: string
+                    title: Title
+                  status:
+                    type: integer
+                    title: Status
+                  detail:
+                    type: string
+                    title: Detail
+                  correlation_id:
+                    type: string
+                    title: Correlation Id
+                additionalProperties: false
+                type: object
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+        '429':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            Retry-After:
+              schema:
+                type: string
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  type:
+                    type: string
+                    title: Type
+                  title:
+                    type: string
+                    title: Title
+                  status:
+                    type: integer
+                    title: Status
+                  detail:
+                    type: string
+                    title: Detail
+                  correlation_id:
+                    type: string
+                    title: Correlation Id
+                additionalProperties: false
+                type: object
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+        '500':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  type:
+                    type: string
+                    title: Type
+                  title:
+                    type: string
+                    title: Title
+                  status:
+                    type: integer
+                    title: Status
+                  detail:
+                    type: string
+                    title: Detail
+                  correlation_id:
+                    type: string
+                    title: Correlation Id
+                additionalProperties: false
+                type: object
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+        '503':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  type:
+                    type: string
+                    title: Type
+                  title:
+                    type: string
+                    title: Title
+                  status:
+                    type: integer
+                    title: Status
+                  detail:
+                    type: string
+                    title: Detail
+                  correlation_id:
+                    type: string
+                    title: Correlation Id
+                additionalProperties: false
+                type: object
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+        '409':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  type:
+                    type: string
+                    title: Type
+                  title:
+                    type: string
+                    title: Title
+                  status:
+                    type: integer
+                    title: Status
+                  detail:
+                    type: string
+                    title: Detail
+                  correlation_id:
+                    type: string
+                    title: Correlation Id
+                additionalProperties: false
+                type: object
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+      security:
+      - FirebaseIDToken: []
+  /api/v1/me/profile:
+    get:
+      tags:
+      - identity
+      summary: My Profile
+      operationId: myProfile
+      security:
+      - FirebaseIDToken: []
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileOutput'
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            ETag:
+              description: Quoted profile version
+              schema:
+                type: string
+                pattern: ^"[1-9][0-9]*"$
+        '400':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '401':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            WWW-Authenticate:
+              schema:
+                type: string
+                const: Bearer
+        '429':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            Retry-After:
+              schema:
+                type: string
+        '500':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '503':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '404':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '409':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+    put:
+      tags:
+      - identity
+      summary: Provision
+      operationId: provisionMyProfile
+      security:
+      - FirebaseIDToken: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileInput'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileOutput'
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            ETag:
+              description: Quoted profile version
+              schema:
+                type: string
+                pattern: ^"[1-9][0-9]*"$
+        '400':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '401':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            WWW-Authenticate:
+              schema:
+                type: string
+                const: Bearer
+        '429':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            Retry-After:
+              schema:
+                type: string
+        '500':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '503':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '408':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '413':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '422':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '201':
+          description: Profile created
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            ETag:
+              description: Quoted profile version
+              schema:
+                type: string
+                pattern: ^"[1-9][0-9]*"$
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileOutput'
+    patch:
+      tags:
+      - identity
+      summary: Patch Me
+      operationId: updateMyProfile
+      security:
+      - FirebaseIDToken: []
+      parameters:
+      - name: if-match
+        in: header
+        required: true
+        schema:
+          type: string
+          pattern: ^"[1-9][0-9]{0,9}"$
+          title: If-Match
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfilePatch'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileOutput'
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            ETag:
+              description: Quoted profile version
+              schema:
+                type: string
+                pattern: ^"[1-9][0-9]*"$
+        '400':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '401':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            WWW-Authenticate:
+              schema:
+                type: string
+                const: Bearer
+        '429':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            Retry-After:
+              schema:
+                type: string
+        '500':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '503':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '404':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '409':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '412':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '413':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '408':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '422':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '428':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+  /api/v1/profiles/{user_id}:
+    get:
+      tags:
+      - identity
+      summary: Private Profile
+      operationId: privateProfile
+      security:
+      - FirebaseIDToken: []
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: User Id
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileOutput'
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            ETag:
+              description: Quoted profile version
+              schema:
+                type: string
+                pattern: ^"[1-9][0-9]*"$
+        '400':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '401':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            WWW-Authenticate:
+              schema:
+                type: string
+                const: Bearer
+        '429':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            Retry-After:
+              schema:
+                type: string
+        '500':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '503':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '404':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '409':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '422':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+    patch:
+      tags:
+      - identity
+      summary: Patch Private
+      operationId: updatePrivateProfile
+      security:
+      - FirebaseIDToken: []
+      parameters:
+      - name: user_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: User Id
+      - name: if-match
+        in: header
+        required: true
+        schema:
+          type: string
+          pattern: ^"[1-9][0-9]{0,9}"$
+          title: If-Match
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfilePatch'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileOutput'
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            ETag:
+              description: Quoted profile version
+              schema:
+                type: string
+                pattern: ^"[1-9][0-9]*"$
+        '400':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '401':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            WWW-Authenticate:
+              schema:
+                type: string
+                const: Bearer
+        '429':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            Retry-After:
+              schema:
+                type: string
+        '500':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '503':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '404':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '409':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '412':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '413':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '408':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '422':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+        '428':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+  /api/v1/events:
+    post:
+      tags:
+      - events
+      summary: Create
+      operationId: createEvent
+      security:
+      - FirebaseIDToken: []
+      parameters:
+      - name: idempotency-key
+        in: header
+        required: true
+        schema:
+          type: string
+          format: uuid
+          description: UUID scoped to actor and events.create.v1; repeated content
+            returns the same resource
+          title: Idempotency-Key
+        description: UUID scoped to actor and events.create.v1; repeated content returns
+          the same resource
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEvent'
+      responses:
+        '201':
+          description: Created or replayed creation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventOutput'
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            ETag:
+              schema:
+                type: string
+                pattern: ^"[1-9][0-9]*"$
+            Location:
+              schema:
+                type: string
+        '400':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '401':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            WWW-Authenticate:
+              schema:
+                type: string
+                const: Bearer
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '409':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '422':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '429':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            Retry-After:
+              schema:
+                type: string
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '500':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '503':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '408':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '413':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+  /api/v1/events/{event_id}:
+    get:
+      tags:
+      - events
+      summary: Detail
+      operationId: eventDetail
+      security:
+      - FirebaseIDToken: []
+      parameters:
+      - name: event_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Event Id
+      responses:
+        '200':
+          description: Authorized listed event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventOutput'
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            ETag:
+              schema:
+                type: string
+                pattern: ^"[1-9][0-9]*"$
+        '400':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '401':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            WWW-Authenticate:
+              schema:
+                type: string
+                const: Bearer
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '409':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '422':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '429':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            Retry-After:
+              schema:
+                type: string
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '500':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '503':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '404':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+  /api/v1/events/{event_id}/updates:
+    get:
+      tags:
+      - event-updates
+      summary: Updates
+      operationId: eventUpdates
+      security:
+      - FirebaseIDToken: []
+      parameters:
+      - name: event_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+          title: Event Id
+      - name: last-event-id
+        in: header
+        required: false
+        schema:
+          anyOf:
+          - type: string
+            pattern: ^(0|[1-9][0-9]{0,18})$
+          - type: 'null'
+          description: Resume hint only; reconnect always emits resync
+          title: Last-Event-Id
+        description: Resume hint only; reconnect always emits resync
+      responses:
+        '200':
+          description: Authorized invalidations; always reconcile via REST
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            text/event-stream:
+              schema:
+                type: string
+        '400':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '401':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            WWW-Authenticate:
+              schema:
+                type: string
+                const: Bearer
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '409':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '422':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '429':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            Retry-After:
+              schema:
+                type: string
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '500':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '503':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+        '404':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+  /api/v1/discovery/nearby:
+    post:
+      tags:
+      - discovery
+      summary: Nearby
+      operationId: nearbyEvents
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NearbyInput'
+        required: true
+      responses:
+        '200':
+          description: Authorized nearby page
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NearbyOutput'
+        '400':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  type:
+                    type: string
+                    title: Type
+                  title:
+                    type: string
+                    title: Title
+                  status:
+                    type: integer
+                    title: Status
+                  detail:
+                    type: string
+                    title: Detail
+                  correlation_id:
+                    type: string
+                    title: Correlation Id
+                additionalProperties: false
+                type: object
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+        '401':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            WWW-Authenticate:
+              schema:
+                type: string
+                const: Bearer
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  type:
+                    type: string
+                    title: Type
+                  title:
+                    type: string
+                    title: Title
+                  status:
+                    type: integer
+                    title: Status
+                  detail:
+                    type: string
+                    title: Detail
+                  correlation_id:
+                    type: string
+                    title: Correlation Id
+                additionalProperties: false
+                type: object
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+        '409':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  type:
+                    type: string
+                    title: Type
+                  title:
+                    type: string
+                    title: Title
+                  status:
+                    type: integer
+                    title: Status
+                  detail:
+                    type: string
+                    title: Detail
+                  correlation_id:
+                    type: string
+                    title: Correlation Id
+                additionalProperties: false
+                type: object
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+        '422':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  type:
+                    type: string
+                    title: Type
+                  title:
+                    type: string
+                    title: Title
+                  status:
+                    type: integer
+                    title: Status
+                  detail:
+                    type: string
+                    title: Detail
+                  correlation_id:
+                    type: string
+                    title: Correlation Id
+                additionalProperties: false
+                type: object
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+        '429':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+            Retry-After:
+              schema:
+                type: string
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  type:
+                    type: string
+                    title: Type
+                  title:
+                    type: string
+                    title: Title
+                  status:
+                    type: integer
+                    title: Status
+                  detail:
+                    type: string
+                    title: Detail
+                  correlation_id:
+                    type: string
+                    title: Correlation Id
+                additionalProperties: false
+                type: object
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+        '500':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  type:
+                    type: string
+                    title: Type
+                  title:
+                    type: string
+                    title: Title
+                  status:
+                    type: integer
+                    title: Status
+                  detail:
+                    type: string
+                    title: Detail
+                  correlation_id:
+                    type: string
+                    title: Correlation Id
+                additionalProperties: false
+                type: object
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+        '503':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  type:
+                    type: string
+                    title: Type
+                  title:
+                    type: string
+                    title: Title
+                  status:
+                    type: integer
+                    title: Status
+                  detail:
+                    type: string
+                    title: Detail
+                  correlation_id:
+                    type: string
+                    title: Correlation Id
+                additionalProperties: false
+                type: object
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+        '408':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  type:
+                    type: string
+                    title: Type
+                  title:
+                    type: string
+                    title: Title
+                  status:
+                    type: integer
+                    title: Status
+                  detail:
+                    type: string
+                    title: Detail
+                  correlation_id:
+                    type: string
+                    title: Correlation Id
+                additionalProperties: false
+                type: object
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+        '413':
+          description: Sanitized Problem Details
+          headers:
+            X-Correlation-ID:
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+            Cache-Control:
+              schema:
+                type: string
+                const: no-store
+          content:
+            application/problem+json:
+              schema:
+                properties:
+                  type:
+                    type: string
+                    title: Type
+                  title:
+                    type: string
+                    title: Title
+                  status:
+                    type: integer
+                    title: Status
+                  detail:
+                    type: string
+                    title: Detail
+                  correlation_id:
+                    type: string
+                    title: Correlation Id
+                additionalProperties: false
+                type: object
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+      security:
+      - FirebaseIDToken: []
+components:
+  schemas:
+    CreateEvent:
+      properties:
+        title:
+          type: string
+          maxLength: 120
+          minLength: 1
+          title: Title
+        category_code:
+          type: string
+          pattern: ^(street|jdm|premium|drift)$
+          title: Category Code
+        starts_at:
+          type: string
+          format: date-time
+          title: Starts At
+        timezone:
+          type: string
+          maxLength: 64
+          minLength: 1
+          title: Timezone
+        location_label:
+          type: string
+          maxLength: 200
+          minLength: 1
+          title: Location Label
+        longitude:
+          type: number
+          maximum: 180.0
+          minimum: -180.0
+          title: Longitude
+        latitude:
+          type: number
+          maximum: 90.0
+          minimum: -90.0
+          title: Latitude
+        description:
+          anyOf:
+          - type: string
+            maxLength: 2000
+            minLength: 1
+          - type: 'null'
+          title: Description
+      additionalProperties: false
+      type: object
+      required:
+      - title
+      - category_code
+      - starts_at
+      - timezone
+      - location_label
+      - longitude
+      - latitude
+      title: CreateEvent
+    EventOutput:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+        organizer_id:
+          type: string
+          format: uuid
+          title: Organizer Id
+        title:
+          type: string
+          title: Title
+        category_code:
+          type: string
+          title: Category Code
+        starts_at:
+          type: string
+          format: date-time
+          title: Starts At
+        timezone:
+          type: string
+          title: Timezone
+        location_label:
+          type: string
+          title: Location Label
+        longitude:
+          type: number
+          title: Longitude
+        latitude:
+          type: number
+          title: Latitude
+        description:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Description
+        state:
+          type: string
+          title: State
+          default: published
+        visibility:
+          type: string
+          title: Visibility
+          default: listed
+        version:
+          type: integer
+          title: Version
+      type: object
+      required:
+      - id
+      - organizer_id
+      - title
+      - category_code
+      - starts_at
+      - timezone
+      - location_label
+      - longitude
+      - latitude
+      - description
+      - version
+      title: EventOutput
+    HealthResponse:
+      properties:
+        status:
+          type: string
+          const: ok
+          title: Status
+          default: ok
+      additionalProperties: false
+      type: object
+      title: HealthResponse
+    NearbyInput:
+      properties:
+        longitude:
+          type: number
+          maximum: 180.0
+          minimum: -180.0
+          title: Longitude
+        latitude:
+          type: number
+          maximum: 90.0
+          minimum: -90.0
+          title: Latitude
+        radius_m:
+          type: number
+          maximum: 50000.0
+          minimum: 1.0
+          title: Radius M
+        from_ts:
+          type: string
+          format: date-time
+          title: From Ts
+        until_ts:
+          type: string
+          format: date-time
+          title: Until Ts
+        category_code:
+          anyOf:
+          - type: string
+            pattern: ^(street|jdm|premium|drift)$
+          - type: 'null'
+          title: Category Code
+        limit:
+          type: integer
+          maximum: 50.0
+          minimum: 1.0
+          title: Limit
+          default: 25
+        cursor:
+          anyOf:
+          - type: string
+            maxLength: 2048
+            minLength: 1
+          - type: 'null'
+          title: Cursor
+      additionalProperties: false
+      type: object
+      required:
+      - longitude
+      - latitude
+      - radius_m
+      - from_ts
+      - until_ts
+      title: NearbyInput
+    NearbyItem:
+      properties:
+        id:
+          type: string
+          format: uuid
+          title: Id
+        title:
+          type: string
+          title: Title
+        category_code:
+          type: string
+          title: Category Code
+        starts_at:
+          type: string
+          format: date-time
+          title: Starts At
+        location_label:
+          type: string
+          title: Location Label
+        distance_m:
+          type: number
+          title: Distance M
+        version:
+          type: integer
+          title: Version
+      type: object
+      required:
+      - id
+      - title
+      - category_code
+      - starts_at
+      - location_label
+      - distance_m
+      - version
+      title: NearbyItem
+    NearbyOutput:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/NearbyItem'
+          type: array
+          title: Items
+        next_cursor:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Cursor
+      type: object
+      required:
+      - items
+      - next_cursor
+      title: NearbyOutput
+    ProfileInput:
+      properties:
+        nickname:
+          type: string
+          maxLength: 80
+          minLength: 1
+          title: Nickname
+        avatar_style:
+          anyOf:
+          - type: string
+            maxLength: 64
+            minLength: 1
+          - type: 'null'
+          title: Avatar Style
+        avatar_seed:
+          anyOf:
+          - type: string
+            maxLength: 256
+            minLength: 1
+          - type: 'null'
+          title: Avatar Seed
+      additionalProperties: false
+      type: object
+      required:
+      - nickname
+      title: ProfileInput
+    ProfileOutput:
+      properties:
+        user_id:
+          type: string
+          format: uuid
+          title: User Id
+        nickname:
+          type: string
+          title: Nickname
+        avatar_style:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Avatar Style
+        avatar_seed:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Avatar Seed
+        version:
+          type: integer
+          title: Version
+      type: object
+      required:
+      - user_id
+      - nickname
+      - avatar_style
+      - avatar_seed
+      - version
+      title: ProfileOutput
+    ProfilePatch:
+      properties:
+        nickname:
+          type: string
+          maxLength: 80
+          minLength: 1
+        avatar_style:
+          anyOf:
+          - type: string
+            maxLength: 64
+            minLength: 1
+          - type: 'null'
+          title: Avatar Style
+        avatar_seed:
+          anyOf:
+          - type: string
+            maxLength: 256
+            minLength: 1
+          - type: 'null'
+          title: Avatar Seed
+      additionalProperties: false
+      type: object
+      minProperties: 1
+      title: ProfilePatch
+    SessionOutput:
+      properties:
+        user_id:
+          type: string
+          format: uuid
+          title: User Id
+        profile_complete:
+          type: boolean
+          title: Profile Complete
+          default: true
+      type: object
+      required:
+      - user_id
+      title: SessionOutput
+  securitySchemes:
+    FirebaseIDToken:
+      type: http
+      scheme: bearer

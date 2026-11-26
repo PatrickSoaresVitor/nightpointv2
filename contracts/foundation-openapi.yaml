@@ -1,0 +1,319 @@
+openapi: 3.1.0
+info:
+  title: NightPoint Foundation
+  version: 0.1.0
+paths:
+  /api/v1/health/live:
+    get:
+      summary: Live
+      operationId: liveness
+      responses:
+        '200':
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+          headers:
+            X-Correlation-ID:
+              description: Server-generated opaque identifier
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+        '400':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              description: Server-generated opaque identifier
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+        '422':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              description: Server-generated opaque identifier
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+        '500':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              description: Server-generated opaque identifier
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+      parameters:
+      - name: X-Correlation-ID
+        in: header
+        required: false
+        schema:
+          type: string
+          maxLength: 64
+          pattern: ^[A-Za-z0-9_-]{1,64}$
+  /api/v1/health/ready:
+    get:
+      summary: Ready
+      operationId: readiness
+      responses:
+        '200':
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+          headers:
+            X-Correlation-ID:
+              description: Server-generated opaque identifier
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+        '400':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              description: Server-generated opaque identifier
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+        '422':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              description: Server-generated opaque identifier
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+        '500':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              description: Server-generated opaque identifier
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+        '503':
+          description: Sanitized Problem Details
+          content:
+            application/problem+json:
+              schema:
+                additionalProperties: false
+                properties:
+                  type:
+                    title: Type
+                    type: string
+                  title:
+                    title: Title
+                    type: string
+                  status:
+                    title: Status
+                    type: integer
+                  detail:
+                    title: Detail
+                    type: string
+                  correlation_id:
+                    title: Correlation Id
+                    type: string
+                required:
+                - type
+                - title
+                - status
+                - detail
+                - correlation_id
+                title: Problem
+                type: object
+          headers:
+            X-Correlation-ID:
+              description: Server-generated opaque identifier
+              schema:
+                type: string
+                pattern: ^[0-9a-f]{32}$
+      parameters:
+      - name: X-Correlation-ID
+        in: header
+        required: false
+        schema:
+          type: string
+          maxLength: 64
+          pattern: ^[A-Za-z0-9_-]{1,64}$
+components:
+  schemas:
+    HealthResponse:
+      properties:
+        status:
+          type: string
+          const: ok
+          title: Status
+          default: ok
+      additionalProperties: false
+      type: object
+      title: HealthResponse

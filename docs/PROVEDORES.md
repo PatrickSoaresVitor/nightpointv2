@@ -1,0 +1,7 @@
+# Cartografia e localização — protótipo acadêmico
+
+OpenStreetMap: tilesHTTPS `https://tile.openstreetmap.org/{z}/{x}/{y}.png`, atribuição visível no mapa e link de licença. Uso interativo, semdownloadoffline, varredura automática, prefetch de áreas ou proxy que oculte a origem. NoWeb são usados User-Agent/Referer e cache normais do navegador; não alterar política para eliminarReferer nem forçar bypass de cache. Disponibilidade best-effort, semSLA. [Política de tiles](https://operations.osmfoundation.org/policies/tiles/) e [atribuição/direitos](https://www.openstreetmap.org/copyright). O parâmetro NP_MAP_TILES=false permite executar testes sem acessar cartografia externa.
+
+Geolocator já era dependência do projeto. Adaptador solicita permissão poração explícita e usa localização enquanto a tela está ativa, sembackground ou armazenamento de trajetória. Atualizações de posição são locais; busca de encontros envia o centro àAPI própria. A região visível no mapa é necessariamente solicitada ao provedor de tiles. Negativa/indisponibilidade permitem coordenada manual e seleção porclique. Não registrar coordenadas reais em logs/evidências de testes. [Documentação oficial do plugin](https://pub.dev/packages/geolocator). NaWeb exige contexto seguroHTTPS oulocalhost e suporte/permissão do navegador/dispositivo.
+
+Eventos/veículos/perfis do protótipo são fictícios. Não usar endereços privados para seed, nem habilitar Firebase real/rotas/geocoding ou outro serviço porinferência. Cartografia e GPS não alteram a autorização de recursos no backend.

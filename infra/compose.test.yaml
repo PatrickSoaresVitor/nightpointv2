@@ -1,0 +1,95 @@
+# Independent file: never merge with the development Compose.
+name: nightpoint-foundation-disposable
+x-backend: &backend
+  image: nightpoint-academic-api:local
+  build: {context: ../backend}
+  user: "${NP_CONTAINER_UID:-10001}:${NP_CONTAINER_GID:-10001}"
+  read_only: true
+  tmpfs: [/tmp]
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  environment: &environment
+    NP_ENV: test
+    NP_DB_HOST: db
+    NP_DB_NAME: nightpoint_test
+    NP_DB_USER: np_runtime
+    NP_DB_PASSWORD_FILE: /run/secrets/runtime_password
+    NP_TEST_RECEIPT_FILE: /proof/receipt.json
+  volumes: ["${NP_TEST_RUN_DIR:?Use test_environment.py}/receipt.json:/proof/receipt.json:ro"]
+services:
+  db:
+    image: postgis/postgis:17-3.7@sha256:29619efaa36ece13e4e5abf69fe03f49b4f27f64ef01fc4c3f20b4f2228f7418
+    environment:
+      POSTGRES_DB: nightpoint_test
+      POSTGRES_USER: np_admin
+      POSTGRES_PASSWORD_FILE: /run/secrets/admin_password
+      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256
+    secrets: [admin_password,runtime_password,migrator_password,test_token]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./postgres/test-bootstrap.sh:/docker-entrypoint-initdb.d/20-test-bootstrap.sh:ro
+    networks: [data]
+    healthcheck:
+      test: [CMD-SHELL, 'PGPASSWORD="$$(cat /run/secrets/admin_password)" psql -h 127.0.0.1 -U np_admin -d nightpoint_test -v ON_ERROR_STOP=1 -Atqc "SELECT test_guard.bootstrap_complete()" | grep -qx t']
+      interval: 3s
+      timeout: 3s
+      retries: 40
+  migrate:
+    <<: *backend
+    command: [python,-m,alembic,upgrade,head]
+    environment:
+      <<: *environment
+      NP_DB_USER: np_migrator
+      NP_DB_PASSWORD_FILE: /run/secrets/migrator_password
+    secrets: [migrator_password]
+    networks: [data]
+    depends_on: {db: {condition: service_healthy}}
+  api:
+    <<: *backend
+    command: [python,-m,uvicorn,app.bootstrap:create_app,--factory,--host,0.0.0.0,--port,"8000",--no-access-log]
+    secrets: [runtime_password]
+    networks: [client,data]
+    ports: ["127.0.0.1:${NP_TEST_API_PORT:-18082}:8000"]
+    depends_on: {migrate: {condition: service_completed_successfully}}
+    healthcheck:
+      test: [CMD,python,-c,"import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health/ready',timeout=8)"]
+      interval: 5s
+      timeout: 10s
+      retries: 30
+  tests:
+    <<: *backend
+    profiles: [quality]
+    command: [python,-m,pytest,-q,-p,"no:cacheprovider"]
+    environment:
+      <<: *environment
+      NP_RUN_DB_TESTS: "1"
+      NP_PERFORMANCE_LOG_FILE: /evidence/request-log.jsonl
+      NP_MIGRATOR_PASSWORD_FILE: /run/secrets/migrator_password
+    volumes:
+      - "${NP_TEST_RUN_DIR:?}/receipt.json:/proof/receipt.json:ro"
+      - ../contracts:/app/contracts:ro
+      - "${NP_TEST_ARTIFACT_DIR:-../.artifacts}:/evidence"
+      - ./private_files.py:/infra/private_files.py:ro
+      - ./prepare.py:/infra/prepare.py:ro
+      - ./test_environment.py:/infra/test_environment.py:ro
+      - ./stop_demo.py:/infra/stop_demo.py:ro
+      - ./verify.py:/infra/verify.py:ro
+    secrets: [runtime_password,migrator_password]
+    networks: [data]
+  client-probe:
+    image: nightpoint-academic-api:local
+    profiles: [quality]
+    command: [python,tests/network_probe.py]
+    networks: [client]
+    read_only: true
+    cap_drop: [ALL]
+networks:
+  data: {internal: true, ipam: {config: [{subnet: "${NP_TEST_DATA_SUBNET:?Use test_environment.py}"}]}}
+  client: {ipam: {config: [{subnet: "${NP_TEST_CLIENT_SUBNET:?Use test_environment.py}"}]}}
+volumes:
+  pgdata: {}
+secrets:
+  admin_password: {file: "${NP_TEST_RUN_DIR:?}/admin_password"}
+  runtime_password: {file: "${NP_TEST_RUN_DIR:?}/runtime_password"}
+  migrator_password: {file: "${NP_TEST_RUN_DIR:?}/migrator_password"}
+  test_token: {file: "${NP_TEST_RUN_DIR:?}/test_token"}

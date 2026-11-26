@@ -1,0 +1,6 @@
+# Only with compose.test.yaml and its new disposable, independently attested target.
+services:
+  api:
+    command: [python,-m,uvicorn,tools.local_demo:app_factory,--factory,--host,0.0.0.0,--port,"8000"]
+    environment:
+      NP_DEMO_WEB_ORIGIN: "${NP_DEMO_WEB_ORIGIN:-http://127.0.0.1:5173}"

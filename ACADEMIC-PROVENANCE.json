@@ -1,0 +1,996 @@
+{
+  "source_commit": "030ca722a7946237d916acf765589f1c518b2ad2",
+  "source_branch": "architecture/to-be",
+  "source_project": "NightPoint-architecture",
+  "original_project": "NightPoint (read-only reference; unchanged)",
+  "authors": "Authorship retained from original source history; recent source author: patrick vitor. No claim that this independent initial commit represents sole original creation.",
+  "scope": "Independent academic prototype; selected runtime/infra/contracts/tests; no source history, secrets, private receipts, commercial planning or internal agent instructions copied.",
+  "source_file_count": 164,
+  "dart_reachable_files": 34,
+  "source_files": [
+    {
+      "path": "backend/.dockerignore",
+      "source_sha256": "a218d1fe7dfe4f4c582ab2e828a7a2ba1a1ffe57ab58906df340bba202cd4e85",
+      "packaged_sha256": "a218d1fe7dfe4f4c582ab2e828a7a2ba1a1ffe57ab58906df340bba202cd4e85",
+      "adapted": false
+    },
+    {
+      "path": "backend/Dockerfile",
+      "source_sha256": "129c2172e598b961b16b8a2b86356c754609d344f4cfc135d71184630c8b2898",
+      "packaged_sha256": "129c2172e598b961b16b8a2b86356c754609d344f4cfc135d71184630c8b2898",
+      "adapted": false
+    },
+    {
+      "path": "backend/alembic.ini",
+      "source_sha256": "fa12779adb7c500965a1988e7e42b418122f83cbbd6143adc8b8557189de6c8c",
+      "packaged_sha256": "fa12779adb7c500965a1988e7e42b418122f83cbbd6143adc8b8557189de6c8c",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/__init__.py",
+      "source_sha256": "fbfe0ba598d726f164467e7e5322656199ea1a28eb829c4386b6e80f40a74219",
+      "packaged_sha256": "fbfe0ba598d726f164467e7e5322656199ea1a28eb829c4386b6e80f40a74219",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/application/__init__.py",
+      "source_sha256": "efd6235cf8876da98a40912cf0cb7f532216ea78519a20bd9f5ba0ea7a5cf53e",
+      "packaged_sha256": "efd6235cf8876da98a40912cf0cb7f532216ea78519a20bd9f5ba0ea7a5cf53e",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/application/health.py",
+      "source_sha256": "02db662d87a11754a58c6b01c727e11e4a430fc2a413aaf7093341cfc22619e6",
+      "packaged_sha256": "02db662d87a11754a58c6b01c727e11e4a430fc2a413aaf7093341cfc22619e6",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/bootstrap.py",
+      "source_sha256": "3ef4f11d5f493bf1e7554f6860e582311b741a5abc9c02b5f341e8fb806d6724",
+      "packaged_sha256": "3ef4f11d5f493bf1e7554f6860e582311b741a5abc9c02b5f341e8fb806d6724",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/__init__.py",
+      "source_sha256": "ed46ad7323802498e06a945c4b1e1e3f47b6a329d202352fcaaacf293fdf0b45",
+      "packaged_sha256": "ed46ad7323802498e06a945c4b1e1e3f47b6a329d202352fcaaacf293fdf0b45",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/community/__init__.py",
+      "source_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "packaged_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/community/application.py",
+      "source_sha256": "63787f7aa53bd3bde2e89f9ddd1198b71dfe4d47d67dc2432dee109c4a69195b",
+      "packaged_sha256": "63787f7aa53bd3bde2e89f9ddd1198b71dfe4d47d67dc2432dee109c4a69195b",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/community/domain.py",
+      "source_sha256": "8be27945b33bf49f9ca17527f2a74c3f397191ab9568dbe50d0863a14b8da2bb",
+      "packaged_sha256": "8be27945b33bf49f9ca17527f2a74c3f397191ab9568dbe50d0863a14b8da2bb",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/community/infrastructure.py",
+      "source_sha256": "ff445cbf129fbba3b27ab00857f4d66c8ac09d0f4460710eb9627364e5808735",
+      "packaged_sha256": "ff445cbf129fbba3b27ab00857f4d66c8ac09d0f4460710eb9627364e5808735",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/community/ports.py",
+      "source_sha256": "cff4784ed0d15ccac18951c5e430c63499e6892705da92da511ea1df1eef0262",
+      "packaged_sha256": "cff4784ed0d15ccac18951c5e430c63499e6892705da92da511ea1df1eef0262",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/community/presentation.py",
+      "source_sha256": "193208c1430bea6a905630a2894b03afa57aa4f169c1b337d6833cd341cfceee",
+      "packaged_sha256": "193208c1430bea6a905630a2894b03afa57aa4f169c1b337d6833cd341cfceee",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/discovery/__init__.py",
+      "source_sha256": "adf898b29e3568189f1192c3b450928d9bba7e64c94bc561f178f706dff7210b",
+      "packaged_sha256": "adf898b29e3568189f1192c3b450928d9bba7e64c94bc561f178f706dff7210b",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/discovery/application.py",
+      "source_sha256": "da3a7e2e7964869c27fa4530ae133e2ba83e21cd2f22243d538fa131787bbaa7",
+      "packaged_sha256": "da3a7e2e7964869c27fa4530ae133e2ba83e21cd2f22243d538fa131787bbaa7",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/discovery/domain.py",
+      "source_sha256": "4087bde155108c8508b1e4b0d5561fdb88816091fb50d644a2e298f071738b8e",
+      "packaged_sha256": "4087bde155108c8508b1e4b0d5561fdb88816091fb50d644a2e298f071738b8e",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/discovery/infrastructure.py",
+      "source_sha256": "dc90981d5ace7580157b6e2989cc92225b95c2ce59befc7f97d38a458a52f1f8",
+      "packaged_sha256": "dc90981d5ace7580157b6e2989cc92225b95c2ce59befc7f97d38a458a52f1f8",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/discovery/ports.py",
+      "source_sha256": "ab68d8bb4cf11d63910818f8e46ef07c6f887f1fb991b17aecd362b8446f27db",
+      "packaged_sha256": "ab68d8bb4cf11d63910818f8e46ef07c6f887f1fb991b17aecd362b8446f27db",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/discovery/presentation.py",
+      "source_sha256": "2f5c7aee9920fdc0c3d7e6314bbaefe7a35aff6b5a3b570e7a3ad72c64d9ec0d",
+      "packaged_sha256": "2f5c7aee9920fdc0c3d7e6314bbaefe7a35aff6b5a3b570e7a3ad72c64d9ec0d",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/events/__init__.py",
+      "source_sha256": "2f0dd8e1de51d167049ca407b1e0c9553079b88da96334890ed97c59c19714a1",
+      "packaged_sha256": "2f0dd8e1de51d167049ca407b1e0c9553079b88da96334890ed97c59c19714a1",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/events/api.py",
+      "source_sha256": "bdb4da46a3781cc1a869b65a76f62f69a06f1f81b080ab1532c506f08fdcb430",
+      "packaged_sha256": "bdb4da46a3781cc1a869b65a76f62f69a06f1f81b080ab1532c506f08fdcb430",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/events/application.py",
+      "source_sha256": "1e6c90b7055cbed9cffd28e6d9a3cfba0876d5e59185f09746a287f97ea3f537",
+      "packaged_sha256": "1e6c90b7055cbed9cffd28e6d9a3cfba0876d5e59185f09746a287f97ea3f537",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/events/domain.py",
+      "source_sha256": "b95d670cec9f7a9abb4f2e421cf900c02862d77952719d65df62b77d846c8ec9",
+      "packaged_sha256": "b95d670cec9f7a9abb4f2e421cf900c02862d77952719d65df62b77d846c8ec9",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/events/infrastructure.py",
+      "source_sha256": "c2e8faebcd3e98a6cd11ebd9349a4d564a178ed95d92bf8066c853e2643c8e61",
+      "packaged_sha256": "c2e8faebcd3e98a6cd11ebd9349a4d564a178ed95d92bf8066c853e2643c8e61",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/events/ports.py",
+      "source_sha256": "365d58d41aa6b7dae4873ce93f607da3be957a749920887c13892f59571bd651",
+      "packaged_sha256": "365d58d41aa6b7dae4873ce93f607da3be957a749920887c13892f59571bd651",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/events/presentation.py",
+      "source_sha256": "af047756448a7a4663c6893e76974c7ef0e8245b52563c40c92ace853c11278e",
+      "packaged_sha256": "af047756448a7a4663c6893e76974c7ef0e8245b52563c40c92ace853c11278e",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/events/realtime.py",
+      "source_sha256": "e1d50d8564543b8e23b187c3edc77dffa13cc393f5440af3b77fdd8044b66867",
+      "packaged_sha256": "e1d50d8564543b8e23b187c3edc77dffa13cc393f5440af3b77fdd8044b66867",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/garage/__init__.py",
+      "source_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "packaged_sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/garage/application.py",
+      "source_sha256": "cc5f64b7c145f67459e7a788d7ec3b99fde240a7aee01dd1c5e494db1f46dbce",
+      "packaged_sha256": "cc5f64b7c145f67459e7a788d7ec3b99fde240a7aee01dd1c5e494db1f46dbce",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/garage/domain.py",
+      "source_sha256": "d4bbb2b7b1ea0c5130dd52c8f7f7bb22ce67e07d5f21bea8c41fedbccad2d969",
+      "packaged_sha256": "d4bbb2b7b1ea0c5130dd52c8f7f7bb22ce67e07d5f21bea8c41fedbccad2d969",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/garage/infrastructure.py",
+      "source_sha256": "769a2401edd3b5700db8d4519001cf101a93d6616fbc7a8df892b53166057e5f",
+      "packaged_sha256": "769a2401edd3b5700db8d4519001cf101a93d6616fbc7a8df892b53166057e5f",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/garage/ports.py",
+      "source_sha256": "3b5a57adf9cce834ac3fb5a4cbc6b9cc122d2fa4a94eb3e2e405e71c49dc118e",
+      "packaged_sha256": "3b5a57adf9cce834ac3fb5a4cbc6b9cc122d2fa4a94eb3e2e405e71c49dc118e",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/garage/presentation.py",
+      "source_sha256": "1c56cd02016d6451d2c7942975beecf103b8d3d64ab55ab681396edcc7ffea32",
+      "packaged_sha256": "1c56cd02016d6451d2c7942975beecf103b8d3d64ab55ab681396edcc7ffea32",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/identity/__init__.py",
+      "source_sha256": "bca4fe12d4539130fb99ecf605cf270d757c95e74ed8cf9237d647b2511032e7",
+      "packaged_sha256": "bca4fe12d4539130fb99ecf605cf270d757c95e74ed8cf9237d647b2511032e7",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/identity/api.py",
+      "source_sha256": "0ef8deaad6bd670e01537918179bae23379b5802cc0c859ccadcc54b4b0a22d0",
+      "packaged_sha256": "0ef8deaad6bd670e01537918179bae23379b5802cc0c859ccadcc54b4b0a22d0",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/identity/application.py",
+      "source_sha256": "6c0777bf7e034f7bdf29c805b5a58bbb09526cd6929700f2ba78abef97bd2c75",
+      "packaged_sha256": "6c0777bf7e034f7bdf29c805b5a58bbb09526cd6929700f2ba78abef97bd2c75",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/identity/body_limit.py",
+      "source_sha256": "ec6609a921b1fa2cc38c6f06a7911c97f5d5038ef58ffe094856ad8c6d5091c3",
+      "packaged_sha256": "ec6609a921b1fa2cc38c6f06a7911c97f5d5038ef58ffe094856ad8c6d5091c3",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/identity/domain.py",
+      "source_sha256": "8d69cc5353f2a9fcece44396c2e43f10de3501c20cb868ccdcd204e65370c49b",
+      "packaged_sha256": "8d69cc5353f2a9fcece44396c2e43f10de3501c20cb868ccdcd204e65370c49b",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/identity/firebase.py",
+      "source_sha256": "7ecba275ecac250d3a3d88bdf040c1275c0d548969027322e0596d1573380697",
+      "packaged_sha256": "7ecba275ecac250d3a3d88bdf040c1275c0d548969027322e0596d1573380697",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/identity/infrastructure.py",
+      "source_sha256": "69c420a4267eeccf7988b81a490e427a12f4dbe4f3b2ca1641437b1769b055aa",
+      "packaged_sha256": "69c420a4267eeccf7988b81a490e427a12f4dbe4f3b2ca1641437b1769b055aa",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/identity/limits.py",
+      "source_sha256": "d4a7d3be4d486fa27d5ad5e4057f32b823e90666971dc40006a6246935664b70",
+      "packaged_sha256": "d4a7d3be4d486fa27d5ad5e4057f32b823e90666971dc40006a6246935664b70",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/identity/ports.py",
+      "source_sha256": "9cdb1a812accc3f7225970b2787098f27b31aa8fa2ff25b6ff94ec1a19250f66",
+      "packaged_sha256": "9cdb1a812accc3f7225970b2787098f27b31aa8fa2ff25b6ff94ec1a19250f66",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/modules/identity/presentation.py",
+      "source_sha256": "84933ad6a4ccc5392a0c9f207aba30030200693e68f87982936c656590c7e97e",
+      "packaged_sha256": "84933ad6a4ccc5392a0c9f207aba30030200693e68f87982936c656590c7e97e",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/platform/__init__.py",
+      "source_sha256": "99c0e3b3d7674820774146a6ffca8f763359a1fad58d070e549ee51b9504ac29",
+      "packaged_sha256": "99c0e3b3d7674820774146a6ffca8f763359a1fad58d070e549ee51b9504ac29",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/platform/business_ingress.py",
+      "source_sha256": "1341958c18635c85a1a06e27b8c257a4429e85e979b0cd04ae70c39f8700f9b8",
+      "packaged_sha256": "1341958c18635c85a1a06e27b8c257a4429e85e979b0cd04ae70c39f8700f9b8",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/platform/config.py",
+      "source_sha256": "06248a75be9a2ebb1943e7b2abda27ef1178f9dcecf3627ba9a6821774df8bba",
+      "packaged_sha256": "06248a75be9a2ebb1943e7b2abda27ef1178f9dcecf3627ba9a6821774df8bba",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/platform/database.py",
+      "source_sha256": "7618efb70ac5da2fb91b3476d524acdf1e0a4b19176c5febd65fef9eea845837",
+      "packaged_sha256": "7618efb70ac5da2fb91b3476d524acdf1e0a4b19176c5febd65fef9eea845837",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/platform/logging.py",
+      "source_sha256": "fcdf3667cf9619ce4ae75f0e612cdfaa9303b8d3d2750319b6ba0faea0d0af87",
+      "packaged_sha256": "fcdf3667cf9619ce4ae75f0e612cdfaa9303b8d3d2750319b6ba0faea0d0af87",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/platform/realtime.py",
+      "source_sha256": "20f45d91b2ac318d5a4589e093970b2766820cb4631b9b44a9925c893eda7f55",
+      "packaged_sha256": "20f45d91b2ac318d5a4589e093970b2766820cb4631b9b44a9925c893eda7f55",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/platform/telemetry.py",
+      "source_sha256": "57eec3fe884394310ef38c561230b91fdc0bdf3987ec86389749b2ab1b665581",
+      "packaged_sha256": "57eec3fe884394310ef38c561230b91fdc0bdf3987ec86389749b2ab1b665581",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/platform/test_guard.py",
+      "source_sha256": "25c6b6bcdd1c07580c0afd44f469fe4d34762d5a8036f30407d085dcb60783fe",
+      "packaged_sha256": "25c6b6bcdd1c07580c0afd44f469fe4d34762d5a8036f30407d085dcb60783fe",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/presentation/__init__.py",
+      "source_sha256": "768885ea6d42826de2e0b873b9bedcd3d18516dc085c15e3c8938e90e19999fe",
+      "packaged_sha256": "768885ea6d42826de2e0b873b9bedcd3d18516dc085c15e3c8938e90e19999fe",
+      "adapted": false
+    },
+    {
+      "path": "backend/app/presentation/contracts.py",
+      "source_sha256": "32b1cd4c9a91a97161c4b69702222323586779850cae8253fd7f33f67d96a746",
+      "packaged_sha256": "32b1cd4c9a91a97161c4b69702222323586779850cae8253fd7f33f67d96a746",
+      "adapted": false
+    },
+    {
+      "path": "backend/migrations/env.py",
+      "source_sha256": "7dcf2758489aea4ef0f95cacfc17002265551e1faa6198257771070923b35b11",
+      "packaged_sha256": "7dcf2758489aea4ef0f95cacfc17002265551e1faa6198257771070923b35b11",
+      "adapted": false
+    },
+    {
+      "path": "backend/migrations/script.py.mako",
+      "source_sha256": "cfbee968990f47d3fb1596491df793b38afdb85065758679ebd865b423dba440",
+      "packaged_sha256": "cfbee968990f47d3fb1596491df793b38afdb85065758679ebd865b423dba440",
+      "adapted": false
+    },
+    {
+      "path": "backend/migrations/versions/0001_foundation.py",
+      "source_sha256": "f94ef6ee6d405ee8f240382848e7c311da73e57f0a959acaacff0d7ed03f7e9c",
+      "packaged_sha256": "f94ef6ee6d405ee8f240382848e7c311da73e57f0a959acaacff0d7ed03f7e9c",
+      "adapted": false
+    },
+    {
+      "path": "backend/migrations/versions/0002_privileges.py",
+      "source_sha256": "2cb4e52188a7442fcd39c7976ceaf20e19f21ff7e1494b052a22e8fc2da267c6",
+      "packaged_sha256": "2cb4e52188a7442fcd39c7976ceaf20e19f21ff7e1494b052a22e8fc2da267c6",
+      "adapted": false
+    },
+    {
+      "path": "backend/migrations/versions/0003_identity.py",
+      "source_sha256": "4acb7942b0648a09c35f059d8b4cdffea32b931357a4b9add8b5dea5047bc41d",
+      "packaged_sha256": "4acb7942b0648a09c35f059d8b4cdffea32b931357a4b9add8b5dea5047bc41d",
+      "adapted": false
+    },
+    {
+      "path": "backend/migrations/versions/0004_profile_text.py",
+      "source_sha256": "6d70aa1638e82df3dde047b35789db7147554e7e4e717355c670adaeead65d1c",
+      "packaged_sha256": "6d70aa1638e82df3dde047b35789db7147554e7e4e717355c670adaeead65d1c",
+      "adapted": false
+    },
+    {
+      "path": "backend/migrations/versions/0005_events.py",
+      "source_sha256": "32a4d79aaaa9c0c3752ad6323cb762e75468f69f4aca1d02858bcbef1951fefc",
+      "packaged_sha256": "32a4d79aaaa9c0c3752ad6323cb762e75468f69f4aca1d02858bcbef1951fefc",
+      "adapted": false
+    },
+    {
+      "path": "backend/migrations/versions/0006_event_management.py",
+      "source_sha256": "be0c94a34a05b1c6981537601645a8b831c9b52a59e378e34e04e1cf786555a3",
+      "packaged_sha256": "be0c94a34a05b1c6981537601645a8b831c9b52a59e378e34e04e1cf786555a3",
+      "adapted": false
+    },
+    {
+      "path": "backend/migrations/versions/0007_garage.py",
+      "source_sha256": "998deabbc19e9ec881c01d325bd40d24ad7455b40364838390fff997b3d46315",
+      "packaged_sha256": "998deabbc19e9ec881c01d325bd40d24ad7455b40364838390fff997b3d46315",
+      "adapted": false
+    },
+    {
+      "path": "backend/migrations/versions/0008_community.py",
+      "source_sha256": "a985b1e702ea3912f0c761d1a83cb36fc7b893895285c0c095f8d62cf31f1bd0",
+      "packaged_sha256": "a985b1e702ea3912f0c761d1a83cb36fc7b893895285c0c095f8d62cf31f1bd0",
+      "adapted": false
+    },
+    {
+      "path": "backend/pyproject.toml",
+      "source_sha256": "8e3eb62d4203734ed8db5e63b8c7c3ba248382284d0e2698136e96a6fa136b19",
+      "packaged_sha256": "8e3eb62d4203734ed8db5e63b8c7c3ba248382284d0e2698136e96a6fa136b19",
+      "adapted": false
+    },
+    {
+      "path": "backend/requirements.lock",
+      "source_sha256": "dad1d5e868b2942fdbb3e2b9858e7896c027ad6e0d398d71fa43035369b88996",
+      "packaged_sha256": "dad1d5e868b2942fdbb3e2b9858e7896c027ad6e0d398d71fa43035369b88996",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/__init__.py",
+      "source_sha256": "17a4477ba0e6477716ccdffb0bf9045fb1aa9285487f5cb1b4bb7960ac295284",
+      "packaged_sha256": "17a4477ba0e6477716ccdffb0bf9045fb1aa9285487f5cb1b4bb7960ac295284",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/conftest.py",
+      "source_sha256": "ff99f1681189fba7063167b9d407c49b180823b4b406866519e9901502db7632",
+      "packaged_sha256": "ff99f1681189fba7063167b9d407c49b180823b4b406866519e9901502db7632",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/identity_fakes.py",
+      "source_sha256": "7ba761c0c7b88e752277732c86a2e894566a3be42a3b16792cd60be59c1878df",
+      "packaged_sha256": "7ba761c0c7b88e752277732c86a2e894566a3be42a3b16792cd60be59c1878df",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/live_api.py",
+      "source_sha256": "015d592d075c5ff5a3e56133465bdb982055eca3b230eada2a1ec155523adfdf",
+      "packaged_sha256": "015d592d075c5ff5a3e56133465bdb982055eca3b230eada2a1ec155523adfdf",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/network_probe.py",
+      "source_sha256": "1021d4f047c6a3dd4de3563ee2a0f7d503e7e17bcaa34a5f4e86c3ca9fa0670d",
+      "packaged_sha256": "1021d4f047c6a3dd4de3563ee2a0f7d503e7e17bcaa34a5f4e86c3ca9fa0670d",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_architecture.py",
+      "source_sha256": "d7e82815c8ddddf5460c7a6defd08590287afaf95ad6223497d810b960448009",
+      "packaged_sha256": "d7e82815c8ddddf5460c7a6defd08590287afaf95ad6223497d810b960448009",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_audit_http.py",
+      "source_sha256": "af4884265e4237b2fe1f2119ddf1b790dd2b7ebe6ab20913c10c98cf3c67d3df",
+      "packaged_sha256": "af4884265e4237b2fe1f2119ddf1b790dd2b7ebe6ab20913c10c98cf3c67d3df",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_community.py",
+      "source_sha256": "5b9a6477a814b134b0913f3bbffa349246dab7a0f667720d2331470acea784d1",
+      "packaged_sha256": "5b9a6477a814b134b0913f3bbffa349246dab7a0f667720d2331470acea784d1",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_contracts.py",
+      "source_sha256": "7010ab186330fc2209b0ebfe8e98a275a4f4f99d9b9c66a89da1d0f4b035d29b",
+      "packaged_sha256": "7010ab186330fc2209b0ebfe8e98a275a4f4f99d9b9c66a89da1d0f4b035d29b",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_database.py",
+      "source_sha256": "cb3070ff4ad0e0ba2a61a723e4d021a31fd841e7605438956b3a0e16ff4ceddd",
+      "packaged_sha256": "cb3070ff4ad0e0ba2a61a723e4d021a31fd841e7605438956b3a0e16ff4ceddd",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_discovery.py",
+      "source_sha256": "c18edd33ce3745d2cc7ed72ce5aff5a54cb73f03c5bfe062d1bfd7cd911f4696",
+      "packaged_sha256": "c18edd33ce3745d2cc7ed72ce5aff5a54cb73f03c5bfe062d1bfd7cd911f4696",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_event_management.py",
+      "source_sha256": "91da27ef95c98b5f82ba985c9e7bc57a0b4d983e1ebd2151737d5d7a3a6da3f5",
+      "packaged_sha256": "91da27ef95c98b5f82ba985c9e7bc57a0b4d983e1ebd2151737d5d7a3a6da3f5",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_events.py",
+      "source_sha256": "002044b93c56951dd3eb01ceaab38545b16a8f499442e12e4d67f178cc5ddeb4",
+      "packaged_sha256": "002044b93c56951dd3eb01ceaab38545b16a8f499442e12e4d67f178cc5ddeb4",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_firebase_sdk.py",
+      "source_sha256": "4cba255591423403b220951c21dfb590d50f0c0f2b823f5d9ce9e5a785a0f896",
+      "packaged_sha256": "4cba255591423403b220951c21dfb590d50f0c0f2b823f5d9ce9e5a785a0f896",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_foundation.py",
+      "source_sha256": "99d81fa88cc0091a32173a7ff0cf69693be83b886e0319813616bf78b1012f0b",
+      "packaged_sha256": "99d81fa88cc0091a32173a7ff0cf69693be83b886e0319813616bf78b1012f0b",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_garage.py",
+      "source_sha256": "080ebe2eec6ecf3c48fe173a5968042664f76e4928b22b71a606e4abf57c0ae8",
+      "packaged_sha256": "080ebe2eec6ecf3c48fe173a5968042664f76e4928b22b71a606e4abf57c0ae8",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_identity_audit.py",
+      "source_sha256": "7d957649db4a0293de95a4118501db596a369ece01639a2faa7e107fc28af926",
+      "packaged_sha256": "7d957649db4a0293de95a4118501db596a369ece01639a2faa7e107fc28af926",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_identity_database.py",
+      "source_sha256": "00d278fe605df1daa6fa472736c7b1d8d4b2f6f191a6c8ccb18ee9dccfa30127",
+      "packaged_sha256": "00d278fe605df1daa6fa472736c7b1d8d4b2f6f191a6c8ccb18ee9dccfa30127",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_identity_http.py",
+      "source_sha256": "53620b7729c75c86ca8dbf085d46ee256d98a1cceec596ade3b2bd0d64042199",
+      "packaged_sha256": "53620b7729c75c86ca8dbf085d46ee256d98a1cceec596ade3b2bd0d64042199",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_local_demo.py",
+      "source_sha256": "6c1094f79afb1717dbe27c195fd6ae3dacc4aa6c503aba47d2356b747185da04",
+      "packaged_sha256": "6c1094f79afb1717dbe27c195fd6ae3dacc4aa6c503aba47d2356b747185da04",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_network_probe.py",
+      "source_sha256": "0e30076689df556f6bdbb4a5b86353e41b1940e8e70fa1725ba20e744a5db898",
+      "packaged_sha256": "0e30076689df556f6bdbb4a5b86353e41b1940e8e70fa1725ba20e744a5db898",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_private_files.py",
+      "source_sha256": "35e6389f44840ef3ef817356fce4f390dd576ecae8f94466b3a821afddae8683",
+      "packaged_sha256": "35e6389f44840ef3ef817356fce4f390dd576ecae8f94466b3a821afddae8683",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_realtime.py",
+      "source_sha256": "998f44e621c4ef1cac92439a970c152bbd968f649027c061c4f1a9189e47282b",
+      "packaged_sha256": "998f44e621c4ef1cac92439a970c152bbd968f649027c061c4f1a9189e47282b",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_target_guard.py",
+      "source_sha256": "d5d0673101a28497165ac49611d7a08396224fdcf7a68cfe6db58ed5ec16e6ec",
+      "packaged_sha256": "d5d0673101a28497165ac49611d7a08396224fdcf7a68cfe6db58ed5ec16e6ec",
+      "adapted": false
+    },
+    {
+      "path": "backend/tests/test_vertical_contract.py",
+      "source_sha256": "0209ea5d65bc89e8c47ae38c85a145026e6aeeae30dfadeb78d06ecae16291c1",
+      "packaged_sha256": "0209ea5d65bc89e8c47ae38c85a145026e6aeeae30dfadeb78d06ecae16291c1",
+      "adapted": false
+    },
+    {
+      "path": "backend/tools/architecture.py",
+      "source_sha256": "0974e8c4f2eebba21d68d24e32eef160e38366eb016eb345e3ce8f5d42d43395",
+      "packaged_sha256": "0974e8c4f2eebba21d68d24e32eef160e38366eb016eb345e3ce8f5d42d43395",
+      "adapted": false
+    },
+    {
+      "path": "backend/tools/export_contract.py",
+      "source_sha256": "192019a08cca4cd6ed76b7b3913343ab49bcef20c1e69dda26f96f29e6dde209",
+      "packaged_sha256": "192019a08cca4cd6ed76b7b3913343ab49bcef20c1e69dda26f96f29e6dde209",
+      "adapted": false
+    },
+    {
+      "path": "backend/tools/local_demo.py",
+      "source_sha256": "3b117755862a995267ce5081564d3aee63339c0c9105730eb3bf5a45afad6de0",
+      "packaged_sha256": "3b117755862a995267ce5081564d3aee63339c0c9105730eb3bf5a45afad6de0",
+      "adapted": false
+    },
+    {
+      "path": "backend/tools/performance_support.py",
+      "source_sha256": "f325f770141a2d384c0d29c51245c3cb79d84fe1e182738dec1dd223f145161b",
+      "packaged_sha256": "f325f770141a2d384c0d29c51245c3cb79d84fe1e182738dec1dd223f145161b",
+      "adapted": false
+    },
+    {
+      "path": "backend/tools/query_diagnostics.py",
+      "source_sha256": "0a59cf2022eba2ad5f163187f71ec2f65f1f4f75ecc1d2ca6d43bf0c17f05669",
+      "packaged_sha256": "0a59cf2022eba2ad5f163187f71ec2f65f1f4f75ecc1d2ca6d43bf0c17f05669",
+      "adapted": false
+    },
+    {
+      "path": "backend/typings/firebase_admin/__init__.pyi",
+      "source_sha256": "8bb109ae44538376d014dd1672b164c7f71fa944aec17259cb26fbd537c41e75",
+      "packaged_sha256": "8bb109ae44538376d014dd1672b164c7f71fa944aec17259cb26fbd537c41e75",
+      "adapted": false
+    },
+    {
+      "path": "backend/typings/firebase_admin/auth.pyi",
+      "source_sha256": "3ff358c1b4bc891f588bf118903a5416202eeb01a03a08db8b4d9ecfbab2ccd9",
+      "packaged_sha256": "3ff358c1b4bc891f588bf118903a5416202eeb01a03a08db8b4d9ecfbab2ccd9",
+      "adapted": false
+    },
+    {
+      "path": "backend/typings/firebase_admin/exceptions.pyi",
+      "source_sha256": "9aba6c5dceeccf54b51ef0320680a3b9bbfa83ba4a20b78b7c154b25990a7ece",
+      "packaged_sha256": "9aba6c5dceeccf54b51ef0320680a3b9bbfa83ba4a20b78b7c154b25990a7ece",
+      "adapted": false
+    },
+    {
+      "path": "contracts/events-05a-openapi.yaml",
+      "source_sha256": "1a2d33114df2e1fa18cee5d024a9a927b7d873e0cdf185e5208ce176e1a38282",
+      "packaged_sha256": "1a2d33114df2e1fa18cee5d024a9a927b7d873e0cdf185e5208ce176e1a38282",
+      "adapted": false
+    },
+    {
+      "path": "contracts/fixtures/vertical-05a.json",
+      "source_sha256": "cf9b55199160cd1fa70c740e4d7c47d94e1d65f37197fb825af2aebe44156dbb",
+      "packaged_sha256": "cf9b55199160cd1fa70c740e4d7c47d94e1d65f37197fb825af2aebe44156dbb",
+      "adapted": false
+    },
+    {
+      "path": "contracts/foundation-openapi.yaml",
+      "source_sha256": "3f4c78783d12ccbf6bbf4fa806372f5139f66b2fc0b7f39e07408f16e0c916c6",
+      "packaged_sha256": "3f4c78783d12ccbf6bbf4fa806372f5139f66b2fc0b7f39e07408f16e0c916c6",
+      "adapted": false
+    },
+    {
+      "path": "contracts/identity-04-1-openapi.yaml",
+      "source_sha256": "d82cf2b79782bdbfdd86092c7236cf1e1bcc8bcb580448fdd05d0c40edecf0f2",
+      "packaged_sha256": "d82cf2b79782bdbfdd86092c7236cf1e1bcc8bcb580448fdd05d0c40edecf0f2",
+      "adapted": false
+    },
+    {
+      "path": "contracts/identity-04-openapi.yaml",
+      "source_sha256": "42e66f684466f564bca887e84e1e86092794debcc1ec6709dbd471f3fe89afd8",
+      "packaged_sha256": "42e66f684466f564bca887e84e1e86092794debcc1ec6709dbd471f3fe89afd8",
+      "adapted": false
+    },
+    {
+      "path": "contracts/openapi.yaml",
+      "source_sha256": "811ea809fa0dd7acbdcd6406068f594c674c9ba0fc4512a5457330ea7f720f11",
+      "packaged_sha256": "811ea809fa0dd7acbdcd6406068f594c674c9ba0fc4512a5457330ea7f720f11",
+      "adapted": false
+    },
+    {
+      "path": "infra/compose.demo.yaml",
+      "source_sha256": "a21fe5d9a63e89bd09f1821e082e94c527a385a721933ffb3619385edfd62f1c",
+      "packaged_sha256": "a21fe5d9a63e89bd09f1821e082e94c527a385a721933ffb3619385edfd62f1c",
+      "adapted": false
+    },
+    {
+      "path": "infra/compose.test.yaml",
+      "source_sha256": "ce9ca2e08deb3a2cda8479abc3ba07ad538efcc34e0bbffd41059eb7d59c03a1",
+      "packaged_sha256": "586eef7948d30ad3bdd7839fd009316cca6da2b59b6397724a419198ae7755bf",
+      "adapted": true
+    },
+    {
+      "path": "infra/postgres/test-bootstrap.sh",
+      "source_sha256": "be12a2283d715bf0b0f700476f54936d79eeaecd96fa840b4b032d13cf47c026",
+      "packaged_sha256": "be12a2283d715bf0b0f700476f54936d79eeaecd96fa840b4b032d13cf47c026",
+      "adapted": false
+    },
+    {
+      "path": "infra/prepare.py",
+      "source_sha256": "20e3264d8895b12378fa37a8f7f628bce7feb150b39dbbaf887035830282d10a",
+      "packaged_sha256": "20e3264d8895b12378fa37a8f7f628bce7feb150b39dbbaf887035830282d10a",
+      "adapted": false
+    },
+    {
+      "path": "infra/private_files.py",
+      "source_sha256": "2e2cbb3b24ee8938ddcccf4e4d88170b639f185ab1dba94ac59dd5576adc2da1",
+      "packaged_sha256": "2e2cbb3b24ee8938ddcccf4e4d88170b639f185ab1dba94ac59dd5576adc2da1",
+      "adapted": false
+    },
+    {
+      "path": "infra/seed_demo.py",
+      "source_sha256": "098ab0fd5431918da8b4f82671cb2218bc6c4beb02b2d13ff04a0759012e87a2",
+      "packaged_sha256": "098ab0fd5431918da8b4f82671cb2218bc6c4beb02b2d13ff04a0759012e87a2",
+      "adapted": false
+    },
+    {
+      "path": "infra/stop_demo.py",
+      "source_sha256": "a6b04aae672f84348a799f5c03190f0459df1369abe6a86d683b13baf843f3c3",
+      "packaged_sha256": "a6b04aae672f84348a799f5c03190f0459df1369abe6a86d683b13baf843f3c3",
+      "adapted": false
+    },
+    {
+      "path": "infra/test_environment.py",
+      "source_sha256": "21c54c7cc812c1a0971bec14d150d063ff0dc6085fb704663b0c65208dae52ff",
+      "packaged_sha256": "ba213bddfa8be38cbe436e1c348acbacc5c5c92db357287a0a4505e5ed2c3419",
+      "adapted": true
+    },
+    {
+      "path": "infra/verify.py",
+      "source_sha256": "22f537f9efacaed0c952921c736fa81d8ef8e0ca37248eededcaaace82e130b4",
+      "packaged_sha256": "22f537f9efacaed0c952921c736fa81d8ef8e0ca37248eededcaaace82e130b4",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/.gitignore",
+      "source_sha256": "29c1ea7d5f9a3488b01dd98e332b31c1857d16fe73b2e3b8f7baf56a8b658709",
+      "packaged_sha256": "29c1ea7d5f9a3488b01dd98e332b31c1857d16fe73b2e3b8f7baf56a8b658709",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/analysis_options.yaml",
+      "source_sha256": "e0ea485cfdbc3e12b93efb8679a5ea73ebfe20ea4ca0c473dc594fc2fb274ed5",
+      "packaged_sha256": "e0ea485cfdbc3e12b93efb8679a5ea73ebfe20ea4ca0c473dc594fc2fb274ed5",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/app/nightpoint_api_app.dart",
+      "source_sha256": "87511b92f4c65280cbab86baf1a4287ad72e6514d866eccc127069de354a2bbe",
+      "packaged_sha256": "87511b92f4c65280cbab86baf1a4287ad72e6514d866eccc127069de354a2bbe",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/core/api/api_client.dart",
+      "source_sha256": "0610cd4d4906a13a35c67f3c37316e45ff52e0829547a6663f68d76f356b8f6b",
+      "packaged_sha256": "0610cd4d4906a13a35c67f3c37316e45ff52e0829547a6663f68d76f356b8f6b",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/core/api/idempotency_key.dart",
+      "source_sha256": "b3d4b9b2369c4d3d42b6e5e7e0becc96e6765323687c3ff269d9b3f6dd65727c",
+      "packaged_sha256": "b3d4b9b2369c4d3d42b6e5e7e0becc96e6765323687c3ff269d9b3f6dd65727c",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/core/location/device_location.dart",
+      "source_sha256": "118671ff0979a050a779c68e0116a8b8247d4791162df30712d0160d81c3d863",
+      "packaged_sha256": "118671ff0979a050a779c68e0116a8b8247d4791162df30712d0160d81c3d863",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/core/location/geolocator_location.dart",
+      "source_sha256": "313b4b06d9753873b71199865f19881c64be9f4f7eb3698be27ee2a2d94c08cd",
+      "packaged_sha256": "313b4b06d9753873b71199865f19881c64be9f4f7eb3698be27ee2a2d94c08cd",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/core/theme/product_theme.dart",
+      "source_sha256": "7802eb51d920c3f86af5f90ef3596b7a606dc60373c659a023849602ac084fa8",
+      "packaged_sha256": "7802eb51d920c3f86af5f90ef3596b7a606dc60373c659a023849602ac084fa8",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/community/data/community_repository.dart",
+      "source_sha256": "731a4cf75f5d8fb3b4b91335e222b2a27e76c12abd169bb10f756c13dc3dd9ba",
+      "packaged_sha256": "731a4cf75f5d8fb3b4b91335e222b2a27e76c12abd169bb10f756c13dc3dd9ba",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/community/models/community_record.dart",
+      "source_sha256": "78e66f7a6d5edddb3c2935baec8819589141d6b9904d3630d63e73849eee4ecb",
+      "packaged_sha256": "78e66f7a6d5edddb3c2935baec8819589141d6b9904d3630d63e73849eee4ecb",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/community/presentation/community_model.dart",
+      "source_sha256": "6ec690964c558a0d587ddd745fe3f44b6f5ea2141c657d7f1fc96eb9122083ec",
+      "packaged_sha256": "6ec690964c558a0d587ddd745fe3f44b6f5ea2141c657d7f1fc96eb9122083ec",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/community/presentation/community_page.dart",
+      "source_sha256": "3b9b78c079acfeb7734f62a5942ac912e64b6e0689d5fb6f0d1674f8e0825754",
+      "packaged_sha256": "3b9b78c079acfeb7734f62a5942ac912e64b6e0689d5fb6f0d1674f8e0825754",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/events/data/event_repository.dart",
+      "source_sha256": "da2c48653d42570be2f23844cc0be18cb84acdc5c2f011e1911f7b2f2aa8aed4",
+      "packaged_sha256": "da2c48653d42570be2f23844cc0be18cb84acdc5c2f011e1911f7b2f2aa8aed4",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/events/data/event_updates.dart",
+      "source_sha256": "334ebcdab4afba755b812e562dc8da14b6ae95be0fa12508fe9f050fba07af5e",
+      "packaged_sha256": "334ebcdab4afba755b812e562dc8da14b6ae95be0fa12508fe9f050fba07af5e",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/events/models/event_record.dart",
+      "source_sha256": "17c81a26e936e1c9d020af7cc07ee33e8e4c1b8728b6025090f7ee3571d44dce",
+      "packaged_sha256": "17c81a26e936e1c9d020af7cc07ee33e8e4c1b8728b6025090f7ee3571d44dce",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/events/presentation/event_detail_model.dart",
+      "source_sha256": "25b64a522457c563b8efb1a871b15524fb9359b1c0eb16f573779c6aef5908d6",
+      "packaged_sha256": "25b64a522457c563b8efb1a871b15524fb9359b1c0eb16f573779c6aef5908d6",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/events/presentation/event_detail_page.dart",
+      "source_sha256": "789fa95fdfb9bbadef2ea3da773bed7e61ada7ab1aef33ed2d8a168c0f404ce9",
+      "packaged_sha256": "789fa95fdfb9bbadef2ea3da773bed7e61ada7ab1aef33ed2d8a168c0f404ce9",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/events/presentation/event_editor.dart",
+      "source_sha256": "b41e1f1313c291a5ac37c09deab73c787784449ebffdccca1c03673f280b7052",
+      "packaged_sha256": "b41e1f1313c291a5ac37c09deab73c787784449ebffdccca1c03673f280b7052",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/events/presentation/events_model.dart",
+      "source_sha256": "32af3c66f6f434ad26f9a8e952e97871e2fd5f089354a096b4b082fe61c8ffad",
+      "packaged_sha256": "32af3c66f6f434ad26f9a8e952e97871e2fd5f089354a096b4b082fe61c8ffad",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/events/presentation/events_page.dart",
+      "source_sha256": "10b8fb1231ef666ab5adf7972ab272f1912a56967bb1e7169d50be31b98db256",
+      "packaged_sha256": "10b8fb1231ef666ab5adf7972ab272f1912a56967bb1e7169d50be31b98db256",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/events/presentation/map_model.dart",
+      "source_sha256": "cd065ef01532d1bf58bddcdda6e7bfc8b33890cfe17e2b645a3acc5c9ad18b2e",
+      "packaged_sha256": "cd065ef01532d1bf58bddcdda6e7bfc8b33890cfe17e2b645a3acc5c9ad18b2e",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/events/presentation/map_page.dart",
+      "source_sha256": "362653a8210542d53b3ea68e2c073f0129c84969336bf201bb1c7d09ec9ba258",
+      "packaged_sha256": "362653a8210542d53b3ea68e2c073f0129c84969336bf201bb1c7d09ec9ba258",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/events/presentation/position_model.dart",
+      "source_sha256": "09f715f8498016ab009754038aba3c0d32e73cf5312e1a344e40a38f2687f0cb",
+      "packaged_sha256": "09f715f8498016ab009754038aba3c0d32e73cf5312e1a344e40a38f2687f0cb",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/garage/data/garage_repository.dart",
+      "source_sha256": "83b0228dc61ff079e53c3d3503b85dc2cea799a67aa8db4dce69c6f8963fc1f0",
+      "packaged_sha256": "83b0228dc61ff079e53c3d3503b85dc2cea799a67aa8db4dce69c6f8963fc1f0",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/garage/models/vehicle_record.dart",
+      "source_sha256": "90f3613839756824f326b304818230a4f963217ad6fe6e6619a07fee5a022f7f",
+      "packaged_sha256": "90f3613839756824f326b304818230a4f963217ad6fe6e6619a07fee5a022f7f",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/garage/presentation/garage_model.dart",
+      "source_sha256": "1eefaf28f0aaa3c2d10228e29c294cdf38ab1562d7508be3960ab135d058d4fe",
+      "packaged_sha256": "1eefaf28f0aaa3c2d10228e29c294cdf38ab1562d7508be3960ab135d058d4fe",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/garage/presentation/garage_page.dart",
+      "source_sha256": "01bf5ff1385e5c4d6f5d701c925524622da1b71de55ce5bada4c9b19d0f7ecda",
+      "packaged_sha256": "01bf5ff1385e5c4d6f5d701c925524622da1b71de55ce5bada4c9b19d0f7ecda",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/garage/presentation/vehicle_detail_model.dart",
+      "source_sha256": "d46588ee096c4a5485cc0b3e9fd2319c0e70dd04dab601af684d067c6ba94c83",
+      "packaged_sha256": "d46588ee096c4a5485cc0b3e9fd2319c0e70dd04dab601af684d067c6ba94c83",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/garage/presentation/vehicle_editor.dart",
+      "source_sha256": "0150b46b1c15ebc64e4eb17a3e304654f5f8126acbc3bfde752923f444939f98",
+      "packaged_sha256": "0150b46b1c15ebc64e4eb17a3e304654f5f8126acbc3bfde752923f444939f98",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/identity/data/local_demo_identity.dart",
+      "source_sha256": "308b0f34d5dbe1d79ef041b7e3f629f893b4f80cf8b8220fead0a9218cce78f5",
+      "packaged_sha256": "308b0f34d5dbe1d79ef041b7e3f629f893b4f80cf8b8220fead0a9218cce78f5",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/identity/data/profile_repository.dart",
+      "source_sha256": "bc005e4d48b194a51ee793b9597fa2ed7351772ae3a9b0b8b478f83f3facf896",
+      "packaged_sha256": "bc005e4d48b194a51ee793b9597fa2ed7351772ae3a9b0b8b478f83f3facf896",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/identity/models/profile_record.dart",
+      "source_sha256": "64ac8b5d9b09e10e78e194d6b1e4b56d8a883f1e4a260a5c3514045fe2656c99",
+      "packaged_sha256": "64ac8b5d9b09e10e78e194d6b1e4b56d8a883f1e4a260a5c3514045fe2656c99",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/identity/presentation/local_sign_in_page.dart",
+      "source_sha256": "a09db68b44605d9600129e0006eec280848b6d9c57933f83df9e4c6c680b07a6",
+      "packaged_sha256": "a09db68b44605d9600129e0006eec280848b6d9c57933f83df9e4c6c680b07a6",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/identity/presentation/product_avatar.dart",
+      "source_sha256": "9ce1c31fae46d6780b0a03f3c8c4430913009a6723e8f7d53e8f8132517db507",
+      "packaged_sha256": "9ce1c31fae46d6780b0a03f3c8c4430913009a6723e8f7d53e8f8132517db507",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/features/identity/presentation/profile_editor.dart",
+      "source_sha256": "f251b9c3d4cea3846d08520737c299aa9b86e48312430beabe1aa2d63fd708d5",
+      "packaged_sha256": "f251b9c3d4cea3846d08520737c299aa9b86e48312430beabe1aa2d63fd708d5",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/lib/main_local.dart",
+      "source_sha256": "9edd220957fef5fee935059f9ba699cf95deacfcb914aa48dfec3587570c99f6",
+      "packaged_sha256": "9edd220957fef5fee935059f9ba699cf95deacfcb914aa48dfec3587570c99f6",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/test/api_client_test.dart",
+      "source_sha256": "eb7842840129b75049d6f32ba25e806a11e0d204729c3fb00e68e039c2bf062f",
+      "packaged_sha256": "eb7842840129b75049d6f32ba25e806a11e0d204729c3fb00e68e039c2bf062f",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/test/community_test.dart",
+      "source_sha256": "b1de0ab837cc42f1d4c71dfe8e5d44637faed64821c85222189b644d41e6d53a",
+      "packaged_sha256": "b1de0ab837cc42f1d4c71dfe8e5d44637faed64821c85222189b644d41e6d53a",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/test/event_updates_test.dart",
+      "source_sha256": "cd682cc645b576ddecfe8259dff8fc70cfb1f415cb302878e03f18cb5744480a",
+      "packaged_sha256": "cd682cc645b576ddecfe8259dff8fc70cfb1f415cb302878e03f18cb5744480a",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/test/garage_test.dart",
+      "source_sha256": "49a4581d8d61510b584298cbd942c95d3dc7c6d7be898b25cc6714f1a4a0605c",
+      "packaged_sha256": "49a4581d8d61510b584298cbd942c95d3dc7c6d7be898b25cc6714f1a4a0605c",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/test/local_app_widget_test.dart",
+      "source_sha256": "16702c3e7e70ae21a44135171e435054c79333a64166e59191d060169e461d20",
+      "packaged_sha256": "16702c3e7e70ae21a44135171e435054c79333a64166e59191d060169e461d20",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/test/map_model_test.dart",
+      "source_sha256": "63258dc5946b4c6b4badc7a1dc44ae05148c2de7c770cea4ca2a3a391747a521",
+      "packaged_sha256": "63258dc5946b4c6b4badc7a1dc44ae05148c2de7c770cea4ca2a3a391747a521",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/test/position_model_test.dart",
+      "source_sha256": "d6eb3358bbf86f22db704f95ce033e9a59009a2c0736b1c641234062ce9ed92e",
+      "packaged_sha256": "d6eb3358bbf86f22db704f95ce033e9a59009a2c0736b1c641234062ce9ed92e",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/web/favicon.png",
+      "source_sha256": "5f8e003b0fae320a6875ad08959e3b48457ef540d7afba0ef40f38540d09943b",
+      "packaged_sha256": "5f8e003b0fae320a6875ad08959e3b48457ef540d7afba0ef40f38540d09943b",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/web/icons/Icon-192.png",
+      "source_sha256": "b7752a61d6943fe27f385f22b5ea1e317e9082187154c37447b6c94fcdcd9b6f",
+      "packaged_sha256": "b7752a61d6943fe27f385f22b5ea1e317e9082187154c37447b6c94fcdcd9b6f",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/web/icons/Icon-512.png",
+      "source_sha256": "6fef74433bfbb5e3a3b6f57317031000332757ff1433dc3e6facb17042b5f2b2",
+      "packaged_sha256": "6fef74433bfbb5e3a3b6f57317031000332757ff1433dc3e6facb17042b5f2b2",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/web/icons/Icon-maskable-192.png",
+      "source_sha256": "b7752a61d6943fe27f385f22b5ea1e317e9082187154c37447b6c94fcdcd9b6f",
+      "packaged_sha256": "b7752a61d6943fe27f385f22b5ea1e317e9082187154c37447b6c94fcdcd9b6f",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/web/icons/Icon-maskable-512.png",
+      "source_sha256": "6fef74433bfbb5e3a3b6f57317031000332757ff1433dc3e6facb17042b5f2b2",
+      "packaged_sha256": "6fef74433bfbb5e3a3b6f57317031000332757ff1433dc3e6facb17042b5f2b2",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/web/index.html",
+      "source_sha256": "5b5bbf7d27e7218a7eee03c3b217afd01504a26d735079018760f4dfa798e0c1",
+      "packaged_sha256": "5b5bbf7d27e7218a7eee03c3b217afd01504a26d735079018760f4dfa798e0c1",
+      "adapted": false
+    },
+    {
+      "path": "nightpoint/web/manifest.json",
+      "source_sha256": "7189b754ac14a710cb11bb3adb156fb96b1fc56b4481c4bbf83253d58a7f90b8",
+      "packaged_sha256": "7189b754ac14a710cb11bb3adb156fb96b1fc56b4481c4bbf83253d58a7f90b8",
+      "adapted": false
+    }
+  ]
+}

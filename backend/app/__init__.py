@@ -1,0 +1,1 @@
+"""NightPoint local backend foundation."""
