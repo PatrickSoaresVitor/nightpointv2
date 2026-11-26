@@ -16,7 +16,7 @@ NightPoint-architecture, branch `architecture/to-be`. As melhorias de cartografi
 
 ## 4. Versão acadêmica
 
-Repositório acadêmico independente na branch `codex/academic-delivery`, armazenado em `C:\nightpointv2` após renomeação física da pasta. O caminho anterior `C:\NightPoint-Academic` permanece como junção de compatibilidade, sem duplicação dos arquivos, para preservar os caminhos usados pela demonstração. Arquivos selecionados de blobs Git, sem copiar histórico, ambientes locais, caches, credenciais ou configurações Firebase. `ACADEMIC-PROVENANCE.json` registra origem e adaptações.
+Repositório acadêmico independente publicado em [PatrickSoaresVitor/nightpointv2](https://github.com/PatrickSoaresVitor/nightpointv2), cuja branch principal é `main`. Arquivos selecionados de blobs Git, sem copiar histórico, ambientes locais, caches, credenciais ou configurações Firebase. `ACADEMIC-PROVENANCE.json` registra origem e adaptações.
 
 ## 5. Funcionalidades implementadas
 
@@ -94,9 +94,9 @@ Inspeção inicial de 176 arquivos selecionados: nenhum arquivo proibido ou padr
 
 Seguir o README: criar o ambiente virtual com Python 3.13, executar `flutter pub get` e `scripts/start_demo.py`, e gerar ou servir a Web com a URL de API emitida. O seed usa somente a API e reproduz perfis, três encontros e três veículos fictícios em alvo próprio. A recuperação explícita conserva volume e prova de identidade. Não abrir o template `web/index.html` por URL de arquivo nem usar banco de outro checkout.
 
-## 24. Publicar no GitHub
+## 24. Repositório publicado
 
-Git local independente, `.gitignore`, fontes, lockfiles, README e atribuições preparados. Nenhum remote foi criado. Somente após autorização, criar repositório exclusivo e vazio, configurar o remote e publicar a branch conforme o README; binários futuros pertencem a uma Release autorizada, fora do histórico Git.
+O repositório está publicado em [https://github.com/PatrickSoaresVitor/nightpointv2](https://github.com/PatrickSoaresVitor/nightpointv2), com `main` como branch principal. A revisão final atualiza apenas documentos, preservando o histórico Git, a autoria e as evidências. Builds, logs e recibos privados permanecem fora do repositório.
 
 ## 25. Limitações e pendências
 
@@ -114,10 +114,10 @@ O código de recuperação validado e os fechamentos documentais estão registra
 
 Durante a preparação, o projeto NightPoint original foi consultado somente por leitura de componentes de mapa/GPS. Não houve alteração de seus arquivos, branch, histórico, configuração ou banco. A revisão editorial final e a renomeação da pasta foram restritas ao repositório acadêmico; os projetos de origem não foram reabertos ou modificados nesta etapa.
 
-## 29. Nenhum push
+## 29. Publicação e implantação
 
-Nenhum push, repositório remoto, Release ou implantação em produção executado. Os comandos de publicação no README são instruções futuras condicionadas à autorização.
+O código acadêmico já está publicado no GitHub. A autorização desta revisão abrange exclusivamente o commit e o push das alterações documentais no repositório acadêmico. Nenhuma Release ou implantação em produção foi realizada nesta etapa.
 
 ## 30. Parecer de prontidão
 
-Versão acadêmica aceita para preparação da entrega como protótipo arquitetural local, com funcionalidades parciais e limitações expressas. README, matriz/diagrama, seis conascências, contratos, testes e proveniência disponíveis. Revisão editorial final concluída, sem alteração de funcionalidades ou repetição de benchmarks e suítes extensas. Nenhum remote, push, Release ou implantação em produção realizado.
+Versão acadêmica aceita para preparação da entrega como protótipo arquitetural local, com funcionalidades parciais e limitações expressas. README, matriz/diagrama, seis conascências, contratos, testes e proveniência disponíveis. Documentação pública revisada para avaliação acadêmica, sem alteração de funcionalidades ou repetição de testes, benchmarks e builds. Publicação do código no GitHub não representa aprovação de produção.

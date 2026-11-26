@@ -12,7 +12,7 @@
 - Falhas anteriores da operação funcional permanecem no principal; estes resultados não aprovam desempenho/produção/SEC global ou Android.
 
 Detalhes e hashes: EVIDENCIAS.json. Logs brutos locais ficam em `.artifacts`, fora do Git; credenciais geradas/recibos privados em `infra/local` nunca devem ser publicados.
-Inspeção final de fontes: 192 arquivos, nenhum arquivo sensível proibido ou padrão de credencial pesquisado. Duas correspondências textuais referem-se exclusivamente ao nome legítimo da branch codex/academic-delivery em instruções/proveniência; não são resíduos na interface e foram preservadas para não falsificar o Git.
+Inspeção final de fontes: 192 arquivos, nenhum arquivo sensível proibido ou padrão de credencial pesquisado. Naquela inspeção, duas correspondências textuais referiam-se exclusivamente ao nome legítimo da branch de preparação em instruções e proveniência, sem resíduos na interface.
 
 ## Conferência editorial final — 26/11/2026
 
@@ -20,4 +20,8 @@ Revisados os 185 arquivos rastreados: 180 arquivos de texto válidos em UTF-8 e 
 
 Corrigidos acentuação, palavras concatenadas e status provisório nos documentos; referências de Richards e Ford harmonizadas pelo título em português utilizado na disciplina, sem inventar dados do exemplar. Resultados, hashes das evidências, autoria e licenças preservados. Não foram alteradas funcionalidades nem executados benchmarks ou suítes extensas.
 
-A pasta foi renomeada fisicamente para `C:\nightpointv2`, após uma tentativa inicial bloqueada pelo Windows. O caminho antigo `C:\NightPoint-Academic` permanece como junção de compatibilidade para os caminhos privados e montagens existentes, sem duplicação dos arquivos. Houve uma breve parada dos contêineres acadêmicos na tentativa inicial; eles foram reiniciados, sem recriar dados. A tentativa final de renomeação funcionou sem nova parada dos contêineres. O servidor Web foi reiniciado com o caminho novo. Web e prontidão da API responderam com HTTP 200; ambos os contêineres acadêmicos ficaram saudáveis. Nenhum serviço de outro projeto foi interrompido.
+Na preparação local, a renomeação da pasta exigiu compatibilidade com os caminhos usados pela demonstração. Houve uma breve parada e reinicialização dos contêineres acadêmicos, sem recriação dos dados. Web e prontidão da API responderam com HTTP 200; ambos os contêineres acadêmicos ficaram saudáveis. Nenhum serviço de outro projeto foi interrompido.
+
+## Revisão do README para publicação acadêmica
+
+README reorganizado com identificação da disciplina e integrantes, descrição do problema, arquitetura, seis exemplos de conascência, execução e limites das validações. Instruções operacionais de recuperação foram preservadas em [Operação local](OPERACAO-LOCAL.md). O relatório foi atualizado para refletir o repositório já publicado no GitHub e sua branch principal `main`. Esta revisão é exclusivamente documental: nenhum teste, benchmark ou build foi repetido. As evidências de execução e seus hashes permanecem inalterados.

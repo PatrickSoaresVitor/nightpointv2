@@ -1,99 +1,166 @@
-# NightPoint — versão acadêmica (nightpointv2)
+# NightPoint
 
-Protótipo executável de **Aplicativo de Mobilidade Urbana — Processamento em Tempo Real**, para a disciplina Arquitetura de Software do Uni-FACEF, professor Carlos Alberto Lucas. O foco é demonstrar módulos coesos, acoplamento controlado, conascência e decisões arquiteturais; não é um produto comercial completo.
+**Aplicativo de Mobilidade Urbana — Processamento em Tempo Real**
 
-## Problema e relação com mobilidade
+![Flutter](https://img.shields.io/badge/Flutter-02569B?logo=flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/Dart-0175C2?logo=dart&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white)
+![PostGIS](https://img.shields.io/badge/PostGIS-336791)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
 
-O NightPoint auxilia entusiastas a descobrir encontros automotivos por região. A posição opcional do dispositivo e a cartografia apoiam a exploração urbana; a API valida o ponto e o PostGIS filtra encontros por distância. Os encontros, perfis e veículos do protótipo são **fictícios**. Não são convites para eventos reais nem orientação de trânsito.
+| Informação acadêmica | Identificação |
+|---|---|
+| Instituição | Uni-FACEF |
+| Disciplina | Arquitetura de Software |
+| Professor | Carlos Alberto Lucas |
+| Semestre | 6º semestre |
 
-## Funcionalidades
+## Apresentação
 
-- Autenticação acadêmica com duas personas e perfil privado editável.
-- Cinco abas: Início, Mapa, Eventos, Social e Perfil; temas claro/escuro/automático.
-- Cartografia OpenStreetMap, pan/zoom, posição atual mediante permissão, centralização, seleção por clique e alternativa manual.
-- Busca geoespacial pela API; marcadores autorizados e abertura do detalhe.
+O NightPoint é um protótipo acadêmico para descoberta e organização de encontros automotivos por região. Integra uma interface Flutter, uma API FastAPI e consultas geoespaciais em PostgreSQL/PostGIS, com atualização seletiva de dados por Server-Sent Events (SSE).
+
+O projeto demonstra decisões arquiteturais em uma aplicação executável. Encontros, perfis e veículos de demonstração são fictícios; não representam convites para eventos reais ou orientação de trânsito.
+
+## Problema
+
+Informações sobre encontros automotivos podem ficar dispersas, dificultando a descoberta de atividades próximas e o acompanhamento de alterações. O NightPoint reúne consulta por região, gestão de encontros e interações entre participantes. A localização opcional do dispositivo e o mapa apoiam a exploração urbana.
+
+## Objetivo acadêmico
+
+Aplicar e analisar coesão, acoplamento e conascência, demonstrando a separação de responsabilidades entre interface, regras de negócio e persistência. O recorte permite discutir os benefícios e os custos de um monólito modular com arquitetura em camadas, portas e adaptadores e injeção de dependências.
+
+## Funcionalidades implementadas
+
+- Autenticação acadêmica com duas personas e edição de perfil privado.
+- Cinco abas: Início, Mapa, Eventos, Social e Perfil; temas claro, escuro e automático.
+- Mapa OpenStreetMap com navegação, seleção de ponto, marcadores e acesso ao detalhe do encontro.
+- Busca de encontros por região e distância, com alternativa manual à geolocalização.
 - Criação, listagem própria, edição e cancelamento lógico de encontros, com controle de versão.
-- Atualização seletiva por SSE e reconciliação REST.
+- Atualização seletiva de detalhes por SSE, seguida de reconciliação REST.
 - Curtidas, participações, comentários e retirada/restauração autorizadas.
-- Garagem privada com múltiplos veículos, principal opcional único, edição, arquivo/restauração e histórico.
+- Garagem privada com múltiplos veículos, principal opcional único, edição, arquivo, restauração e histórico.
 
-## Processamento em tempo real
+A integração de geolocalização está implementada, mas a obtenção de uma posição GPS real **não foi confirmada no navegador da demonstração**.
 
-A geolocalização atualiza o marcador local enquanto a tela está ativa. Não armazena trajetórias e não envia continuamente cada posição à API. Buscar encontros envia o centro da busca; o backend aplica validação, autorização e distância geográfica no PostGIS.
+## Tecnologias utilizadas
 
-SSE é outro fluxo: após uma alteração **confirmada em transação**, o servidor notifica clientes conectados ao encontro. O consumidor relê o estado REST autorizado. Duas sessões independentes podem editar/observar o mesmo encontro. REST comum não é apresentado como comunicação contínua. O protótipo não garante tempo real rígido, entrega distribuída ou desempenho de produção.
+| Camada | Tecnologias e finalidade |
+|---|---|
+| Frontend | Flutter e Dart para interface, estado de apresentação e comunicação com a API |
+| Backend | Python e FastAPI para contratos HTTP, autenticação, autorização e casos de uso |
+| Persistência | PostgreSQL para transações e integridade; PostGIS para consultas geoespaciais |
+| Comunicação | REST para operações e consultas; SSE para notificações seletivas |
+| Mapa e localização | OpenStreetMap, flutter_map, latlong2 e geolocator |
+| Ambiente local | Docker e Docker Compose para API e banco isolados |
 
-## Tecnologias, módulos e arquitetura
+## Arquitetura de software
 
-Flutter/Dart → REST/SSE FastAPI/Python → PostgreSQL/PostGIS privado, em monólito modular com camadas e portas/adaptadores seletivos. A composição injeta implementações. Módulos: Identity (perfil), Events (gestão), Discovery (busca), Garage (veículos), Community (interações), Platform (banco/configuração/reatividade). O frontend não acessa tabelas de negócio.
+A solução é um **monólito modular**, com cinco módulos de negócio:
+
+| Módulo | Responsabilidade |
+|---|---|
+| Identity | Identidade e perfil privado |
+| Events | Gestão, autoria, visibilidade e versionamento de encontros |
+| Discovery | Busca regional e projeção autorizada de encontros |
+| Garage | Veículos privados, principal e histórico |
+| Community | Reações, participações e comentários |
+
+A plataforma fornece banco, configuração e comunicação de eventos. As camadas de apresentação, aplicação, domínio e infraestrutura têm responsabilidades distintas. Portas e adaptadores isolam integrações relevantes; a composição injeta as implementações. O frontend acessa a API, sem conexão direta com tabelas de negócio. O backend autoriza os recursos e mantém a persistência privada.
 
 ```mermaid
 flowchart LR
-  GPS[Dispositivo] --> UI[Flutter: views e models]
-  OSM[OpenStreetMap] --> UI
-  UI -->|REST| API[FastAPI: DTOs e autorização]
-  API --> APP[Casos de uso e portas]
-  APP --> SQL[Adaptadores SQL]
-  SQL --> DB[(PostgreSQL/PostGIS privado)]
-  APP -->|Após commit| SSE[EventBus local e SSE]
-  SSE --> UI
+  GPS["Localização opcional do dispositivo"] --> UI["Flutter / Dart"]
+  OSM["OpenStreetMap"] -->|Cartografia| UI
+  UI -->|REST| HTTP["FastAPI: contratos e autorização"]
+  HTTP --> APP["Casos de uso dos cinco módulos"]
+  APP --> PORTS["Portas e adaptadores SQL"]
+  PORTS --> DB[("PostgreSQL / PostGIS privado")]
+  APP -->|Após transação confirmada| BUS["EventBus local / SSE"]
+  BUS -->|Notificação seletiva| UI
+  UI -->|Reconciliação REST| HTTP
 ```
 
-Veja [matriz de critérios, coesão, dependências e seis conascências](docs/ARCHITECTURE.md), [provedores e privacidade](docs/PROVEDORES.md) e [proveniência](ACADEMIC-PROVENANCE.json).
+### Coesão, acoplamento e conascência
+
+A coesão é promovida pelo agrupamento das regras por capacidade de negócio. O acoplamento é controlado por contratos públicos, repositories e portas, mantendo a injeção de dependências na composição. O compartilhamento de processo e banco continua sendo uma dependência operacional assumida.
+
+Os seis exemplos de conascência analisados na implementação são:
+
+| Tipo | Exemplo concreto | Tratamento |
+|---|---|---|
+| Nome | Campos JSON `starts_at` e `version` entre API e Dart | Contrato concentrado em DTOs e repositories |
+| Tipo | Versão inteira do encontro no backend e no frontend | Tipagem explícita e verificação do contrato |
+| Significado/convenção | Valores de visibilidade `listed` e `owner_only` | Política de autorização centralizada no servidor |
+| Posição | Ordem latitude/longitude em `DevicePoint` e `LatLng` | Dependência localizada nos adaptadores e no modelo de mapa |
+| Execução | Confirmação da transação antes de publicar a invalidação | Ordem preservada dentro do caso de uso |
+| Temporal | Transações simultâneas escolhendo o veículo principal | Bloqueio transacional por proprietário e índice único parcial |
+
+A classificação temporal trata de concorrência; não decorre apenas da expressão “tempo real”. A [análise arquitetural](docs/ARCHITECTURE.md) relaciona os exemplos aos arquivos e explicita os impactos de mudança.
+
+## Estrutura dos diretórios
 
 ```text
-backend/app/modules/       domínio, aplicação, portas e adaptadores
-backend/app/platform/      banco, guardas e EventBus
-backend/migrations/        migrations incrementais e grants
-contracts/                 contratos OpenAPI
-nightpoint/lib/core/       comunicação, tema e porta de localização
-nightpoint/lib/features/   presentation, models e repositories por capacidade
-infra/                     launcher atestado, bootstrap e seed pela API
-scripts/                   inicialização e build acadêmicos
-docs/                      evidências e análise para o documento da disciplina
+backend/
+  app/modules/       cinco módulos de negócio
+  app/platform/      serviços de infraestrutura compartilhados
+  migrations/        evolução do esquema e permissões
+  tests/             testes do backend e das fronteiras arquiteturais
+contracts/           contratos OpenAPI
+nightpoint/
+  lib/app/           composição do aplicativo
+  lib/core/          comunicação, tema e localização
+  lib/features/      capacidades do frontend
+  test/              testes Flutter
+  web/               recursos da versão Web
+infra/               ambiente Docker, inicialização e dados fictícios
+scripts/             execução e verificação da demonstração
+docs/                arquitetura, operação, provedores e evidências
 ```
 
-## Pré-requisitos e instalação
+## Mapa, GPS, PostGIS, REST e SSE
 
-O diretório local é `C:\nightpointv2`. A pasta foi renomeada fisicamente; nesta máquina, o caminho anterior `C:\NightPoint-Academic` permanece como junção de compatibilidade para os caminhos já utilizados pela demonstração. Há uma única cópia dos arquivos. A junção não integra o conteúdo versionado nem é requisito para uma nova instalação.
+O mapa utiliza cartografia OpenStreetMap com atribuição visível. O usuário pode selecionar um ponto ou informar a região manualmente. A geolocalização solicita permissão explícita e atualiza o marcador local enquanto a tela está ativa; não armazena trajetórias nem envia continuamente cada posição ao servidor.
 
-Python 3.13, Git, Docker Desktop/Compose em execução, Flutter com Dart compatível com `sdk: ^3.12.0` e suporte Web. Internet para obter dependências/imagens e cartografia. Geolocalização Web exige localhost/HTTPS e suporte/permissão do navegador/dispositivo. O projeto independe de outros checkouts.
+A busca envia seu centro à API por REST. O backend valida a região e a autorização; o PostGIS filtra os encontros por distância geográfica. Os marcadores permitem abrir os detalhes dos encontros retornados.
 
-Na raiz deste repositório, em PowerShell:
+Após uma alteração confirmada em transação, o backend envia uma notificação SSE aos clientes conectados ao encontro. O consumidor consulta novamente o recurso por REST, reconciliando o estado autorizado. Esse fluxo foi validado com duas sessões reais. O EventBus é local a um processo; não há garantia de entrega distribuída ou tempo real rígido.
+
+## Pré-requisitos
+
+- Git e Python 3.13.
+- Flutter com suporte Web e Dart compatível com `sdk: ^3.12.0`.
+- Docker Desktop com Docker Compose disponível e em execução.
+- Navegador e conexão à Internet para dependências, imagens e cartografia.
+- Para geolocalização: contexto seguro (localhost ou HTTPS), suporte do dispositivo e permissão do navegador.
+
+## Instalação e execução
+
+Os comandos abaixo usam PowerShell. No Linux/macOS, crie o ambiente com `python3.13 -m venv .venv` e utilize `.venv/bin/python` no lugar de `.venv\Scripts\python.exe`.
+
+### 1. Obter o projeto e instalar as dependências
 
 ```powershell
+git clone https://github.com/PatrickSoaresVitor/nightpointv2.git
+Set-Location nightpointv2
 py -3.13 -m venv .venv
 Push-Location nightpoint
 flutter pub get
 Pop-Location
 ```
 
-Em Linux/macOS, use `python3.13 -m venv .venv` e `.venv/bin/python` nos comandos equivalentes. O launcher e o seed usam apenas a biblioteca padrão do Python no host; o backend e suas dependências fixadas são construídos no Docker. Não preencher credenciais pessoais ou configurar Firebase.
-
-[Configuração de exemplo sem segredos](config.example.json) descreve os defaults; não é arquivo automaticamente carregado. Os scripts e o estado público emitido pelo launcher são a configuração efetiva. Credenciais são geradas por alvo e permanecem fora do Git.
-
-## Configuração, banco e backend
+### 2. Iniciar a API e o banco
 
 ```powershell
 .venv\Scripts\python.exe scripts/start_demo.py
 ```
 
-O launcher cria projeto Docker, redes, volume, senhas sintéticas locais e recibo de atestação próprios; aguarda bootstrap, valida destino, executa migrations 0001–0008 e inicia a API com identidade acadêmica. Banco sem porta publicada; somente a API em 127.0.0.1 com porta livre. A origem Web é `http://127.0.0.1:5174`. Artefatos locais/segredos gerados ficam ignorados pelo Git. Não copiar esses arquivos para o repositório remoto.
+O script prepara um ambiente isolado, aplica as migrations e cria perfis, três encontros e três veículos fictícios pela API. A API usa uma porta local disponível; o banco permanece sem porta publicada. As credenciais são geradas localmente e ficam fora do Git. A demonstração usa autenticação sintética, sem exigir credenciais pessoais ou Firebase real.
 
-O estado público da execução fica em `.artifacts/academic/current-demo.json`. Executar o script novamente reutiliza o alvo ativo; não apaga nem recria dados silenciosamente. Se houver falha durante seed, recuperar o RunID e executar explicitamente:
+### 3. Executar o frontend Web
 
-```powershell
-$demo = Get-Content .artifacts/academic/current-demo.json -Raw | ConvertFrom-Json
-.venv\Scripts\python.exe infra/seed_demo.py --run-id $demo.run_id
-```
-
-Se o primeiro bootstrap ou a construção da API forem interrompidos, o volume e o RunID ficam preservados. Conferir `preparation.json` do alvo próprio e recuperar explicitamente com `python scripts/resume_demo.py --run-id RUN_ID`. A recuperação valida dono/volume/arquivos privados, exige a função de bootstrap concluída e repete a prova de identidade do cluster, mantendo 180 s de startup e 600 s por comando. Aceita etapa já atestada somente com proveniência da interrupção e sem demo concluída. Não cria marcador artificial nem descarta volume. Não usar outro RunID ou banco por inferência. A imagem evita gerar bytecode durante instalação, mantendo versões fixas e `pip check`.
-
-O seed usa apenas a API, chaves idempotentes e dados fictícios: Organizador Demo (A), Piloto Demo (B), Encontro Street/Cars & Coffee/Encontro JDM e três veículos privados. Centro manual inicial em Franca, com pontos de demonstração aproximados e sem endereço privado. O seed não modifica outro ambiente.
-
-## Frontend Web
-
-Para desenvolvimento, em outra sessão na raiz:
+Em outro terminal, na raiz do repositório:
 
 ```powershell
 $demo = Get-Content .artifacts/academic/current-demo.json -Raw | ConvertFrom-Json
@@ -102,74 +169,73 @@ flutter run -d web-server --web-hostname 127.0.0.1 --web-port 5174 --target lib/
 Pop-Location
 ```
 
-Para o artefato de apresentação:
+Abra [http://127.0.0.1:5174/](http://127.0.0.1:5174/). Use apenas um servidor nessa porta.
+
+### Alternativa: gerar e servir o artefato Web
+
+Após instalar as dependências e iniciar a API, execute na raiz, em vez de `flutter run`:
 
 ```powershell
 .venv\Scripts\python.exe scripts/build_web.py
 .venv\Scripts\python.exe -m http.server 5174 --bind 127.0.0.1 --directory nightpoint/build/web
 ```
 
-Abrir `http://127.0.0.1:5174/`. Não abrir o template `web/index.html` por URL de arquivo. Não executar dois servidores na mesma porta. O build não é versionado e deve incluir `assets/NOTICES`. Nenhum serviço é exposto publicamente.
+O build não é versionado e deve preservar `assets/NOTICES`. Para encerramento, recuperação de ambiente ou verificações opcionais, consulte [Operação local](docs/OPERACAO-LOCAL.md).
 
-## Demonstração sugerida
+## Roteiro de demonstração
 
-1. Entrar como A (Organizador Demo); abrir Mapa, observar cartografia e atribuição.
-2. Clicar em Usar minha localização e permitir, se desejar. Se indisponível/negada, usar centro manual em Franca ou selecionar ponto no mapa. A posição real pode estar longe dos eventos fictícios; voltar às coordenadas de demonstração para vê-los.
-3. Buscar região → marcador → detalhe; mostrar consulta autorizada/PostGIS.
-4. Em outra janela/sessão A, abrir Meus encontros e editar título/descrição. O primeiro detalhe recebe SSE e relê o estado REST. O script abaixo reproduz essa comunicação com duas sessões reais.
-5. Mostrar Social (curtir/participar/comentar) e Perfil/Garagem (veículos, principal/histórico).
-6. Mostrar logout, persona B e sua garagem distinta. As autorizações estão no backend, não só na UI.
+1. Entrar como **Organizador Demo** e apresentar as cinco abas.
+2. Abrir **Mapa**, observar a cartografia, a atribuição e os encontros fictícios na região de Franca.
+3. Buscar a região, selecionar um marcador e abrir o detalhe retornado pela API/PostGIS.
+4. Solicitar a localização, se desejado. Caso não haja posição disponível, demonstrar a seleção manual; não apresentar a ausência de fix como GPS validado.
+5. Em duas sessões independentes da mesma persona, abrir um encontro e editar seus dados; observar a atualização do detalhe por SSE e REST.
+6. Demonstrar interações sociais e a garagem privada, incluindo o veículo principal e seu histórico.
+7. Sair e entrar como **Piloto Demo**, mostrando a separação dos dados privados entre personas.
 
-```powershell
-$demo = Get-Content .artifacts/academic/current-demo.json -Raw | ConvertFrom-Json
-.venv\Scripts\python.exe scripts/demo_realtime.py --run-id $demo.run_id
-.venv\Scripts\python.exe scripts/verify_demo.py --run-id $demo.run_id
-```
+O roteiro orienta a apresentação; não representa aprovação automatizada de todas essas jornadas na execução acadêmica.
 
-O segundo script verifica a descoberta por pontos fictícios próximo/distante e a negação de acesso de B ao veículo privado de A. Ambos usam somente a API da própria demo atestada, sem SQL direto nem credenciais reais.
+## Testes e evidências
 
-## Testes relevantes
+Os resultados abaixo foram registrados anteriormente. Esta revisão documental não executa novos testes, benchmarks ou builds.
 
-```powershell
-Push-Location nightpoint
-flutter analyze --no-pub
-flutter test --no-pub test/position_model_test.dart test/map_model_test.dart
-Pop-Location
-```
+| Verificação registrada | Resultado e alcance |
+|---|---|
+| Análise Flutter completa | Nenhum problema identificado |
+| Testes Flutter direcionados | 17 aprovados, com dispositivos e HTTP controlados |
+| Fronteiras arquiteturais | Grafo de 51 nós Python acíclico e ownership válido |
+| API/PostGIS | Três encontros próximos, região distante vazia e acesso cruzado ao veículo privado negado com HTTP 404 |
+| SSE e REST | Duas sessões reais, frame `changed` e reconciliação com versão confirmada |
+| Navegador | Cartografia, três marcadores, detalhe e busca manual confirmados |
+| GPS real no navegador | Obtenção de posição não confirmada |
+| Artefato Web | Build concluído anteriormente e servido com HTTP 200; atribuições preservadas |
 
-Esses testes de estado usam dispositivos/HTTP substitutos controlados; não provam permissão real de GPS ou tiles. O build/navegador e o script SSE verificam integrações reais separadamente. Testes SQL só devem usar launcher atestado, nunca banco arbitrário. Para um alvo independente de teste direcionado:
+Também foram registradas falhas no bootstrap inicial e timeouts em duas construções, seguidos de recuperação do mesmo volume. Na operação funcional anterior, uma rodada conjunta teve quatro aprovações e quatro falhas ou timeouts. Os testes direcionados desta entrega não substituem a aprovação integral dessa rodada.
 
-```powershell
-.venv\Scripts\python.exe infra/test_environment.py --pytest-only -- tests/test_architecture.py
-```
+Os [registros de evidências](docs/EVIDENCIAS.md), [resumos e hashes](docs/EVIDENCIAS.json) e o [relatório de entrega](RELATORIO-ENTREGA-ACADEMICA.md) detalham resultados e limitações. Logs brutos e recibos privados não integram o repositório público.
 
-Não executar benchmarks para a apresentação. Resultados efetivamente obtidos, falhas e limites constam no relatório de entrega; não presumir aprovação de toda suíte.
+## Limitações conhecidas
 
-## Encerramento e nova base
+- Protótipo local com autenticação sintética; identidade real, idade, MFA e recuperação de acesso não validados.
+- GPS dependente do navegador e do dispositivo, sem posição real confirmada na demonstração; alternativa manual disponível.
+- Cartografia dependente da Internet e do provedor; sem download offline ou garantia de disponibilidade.
+- SSE restrito a um processo, sem garantia distribuída, latência rígida ou desempenho de produção comprovado.
+- Preferência de tema mantida em memória.
+- Rotas, geocodificação avançada e APK/Android validado fora desta entrega.
+- Suíte geral, auditoria global de segurança e aptidão para produção não aprovadas por esta entrega.
 
-```powershell
-$demo = Get-Content .artifacts/academic/current-demo.json -Raw | ConvertFrom-Json
-.venv\Scripts\python.exe infra/stop_demo.py $demo.run_id
-```
+## Integrantes
 
-Isso para somente os contêineres próprios e preserva volume/prova. Para outra base de demonstração, criar explicitamente um novo RunID com `infra/test_environment.py --demo`, mantendo a origem Web na porta 5174 no ambiente da sessão, e sem apagar o alvo anterior. Não usar prune/down -v ou encerrar projetos alheios.
+- João Vitor Dias Oliveira.
+- Pablo Vinicius Soares Vitor.
+- Patrick Soares Vitor.
 
-## Limitações e referências
+A autoria do código de origem e as atribuições de terceiros estão preservadas em [Autoria e atribuições](ATTRIBUTIONS.md) e na [proveniência](ACADEMIC-PROVENANCE.json). Não foi concedida uma nova licença geral ao código autoral. As dependências mantêm suas licenças; a cartografia exige atribuição a © OpenStreetMap contributors. As regras acadêmicas de declaração de autoria e ferramentas continuam aplicáveis.
 
-Protótipo local com autenticação sintética, sem recuperação/idade/MFA reais; SSE em um processo, sem garantia distribuída; GPS depende do navegador/dispositivo; Internet/tiles podem falhar, com alternativa manual; rotas/geocodificação avançada e APK não são requisitos de conclusão desta entrega. Desempenho/produção e SEC-001 global não aprovados. Não armazenar trajetória nem publicar dados pessoais. Preferências de tema em memória. [Relatório de entrega](RELATORIO-ENTREGA-ACADEMICA.md) discrimina executado/aprovado/reprovado/não verificado.
+## Referências bibliográficas
 
-RICHARDS, Mark; FORD, Neal. *Fundamentos da Arquitetura de Software*. Edição em português utilizada na disciplina, especialmente modularidade, coesão, acoplamento e conascência. Os dados de edição e paginação devem seguir o exemplar utilizado no trabalho acadêmico; não foram identificados neste pacote. A análise e referências de arquivos estão em docs/ARCHITECTURE.md. [Autoria, licenças e atribuições](ATTRIBUTIONS.md); [OpenStreetMap](https://www.openstreetmap.org/copyright). Não foi concedida uma nova licença geral ao código autoral nesta preparação.
+- RICHARDS, Mark; FORD, Neal. *Fundamentos da Arquitetura de Software*. Edição em português adotada na disciplina; referência para modularidade, coesão, acoplamento e conascência. Os dados específicos de edição e paginação não constam neste pacote.
+- RICHARDS, Mark; FORD, Neal. *Fundamentals of Software Architecture: An Engineering Approach*. O’Reilly, 2020. [Capítulo sobre modularidade](https://www.oreilly.com/library/view/fundamentals-of-software/9781492043447/ch03.html), como consulta complementar ao original em inglês.
+- CONNASCENCE.IO. [Taxonomia de conascência](https://connascence.io/).
+- OPENSTREETMAP FOUNDATION. [Direitos e atribuição](https://www.openstreetmap.org/copyright) e [política de uso de tiles](https://operations.osmfoundation.org/policies/tiles/).
 
-## Preparação para GitHub
-
-Repositório Git local independente, sem histórico privado copiado e sem remote criado. Antes de publicação autorizada: verificar `git status`, arquivos rastreados e atribuições. Não adicionar `.venv`, `.artifacts`, `infra/local`, segredos, builds, logs ou binários. O repositório remoto exclusivo sugerido é `nightpointv2`. A criação do remote, push e GitHub Release dependem de autorização posterior; não foram executados por esta preparação.
-
-Somente depois de obter autorização e criar o repositório exclusivo, substituir URL_DO_REPOSITORIO pela URL fornecida:
-
-```powershell
-Set-Location C:\nightpointv2
-git remote add origin URL_DO_REPOSITORIO
-git push -u origin codex/academic-delivery
-```
-
-Esses comandos são instruções futuras, não ações executadas. Binários futuros pertencem a uma Release autorizada, sem adicioná-los desnecessariamente ao histórico.
+As classificações e os exemplos aplicados ao código são análise deste projeto, sem reprodução de trechos do livro. Consulte também a documentação de [cartografia e privacidade](docs/PROVEDORES.md).
