@@ -68,6 +68,8 @@ Pop-Location
 
 EmLinux/macOS, use `python3.13 -m venv .venv` e `.venv/bin/python` nos comandos equivalentes. Não há dependência Python dehost para o launcher/seed; o backend e suas dependências fixadas são construídos no Docker. Não preencher credenciais pessoais ou configurar Firebase.
 
+[Configuração de exemplo sem segredos](config.example.json) descreve os defaults; não é arquivo automaticamente carregado. Os scripts e o estado público emitido pelo launcher são a configuração efetiva. Credenciais são geradas poralvo e permanecem fora doGit.
+
 ## Configuração, banco e backend
 
 ```powershell
@@ -83,7 +85,7 @@ $demo = Get-Content .artifacts/academic/current-demo.json -Raw | ConvertFrom-Jso
 .venv\Scripts\python.exe infra/seed_demo.py --run-id $demo.run_id
 ```
 
-Se o primeiro bootstrap for interrompido antes da atestação, o volume e o RunID ficam preservados. Conferir o registro `preparation.json` do alvo próprio e recuperar explicitamente com `python scripts/resume_demo.py --run-id RUN_ID`. A recuperação valida dono/volume/arquivos privados, exige a função de bootstrap concluída e repete a prova de identidade do cluster, mantendo o prazo original180s. Não cria marcador artificial, não descarta volume e recusa alvo já atestado. Não usar outroRunID ou banco por inferência.
+Se o primeiro bootstrap ou a construção da API forem interrompidos, o volume e o RunID ficam preservados. Conferir `preparation.json` do alvo próprio e recuperar explicitamente com `python scripts/resume_demo.py --run-id RUN_ID`. A recuperação valida dono/volume/arquivos privados, exige a função de bootstrap concluída e repete a prova de identidade do cluster, mantendo180s de startup e600s porcomando. Aceita etapa já atestada somente com proveniência da interrupção e sem demo concluída. Não cria marcador artificial nem descarta volume. Não usar outroRunID ou banco porinferência. A imagem evita gerar bytecode durante instalação, mantendo versões fixas e `pip check`.
 
 O seed usa apenasAPI, chaves idempotentes e dados fictícios: Organizador Demo(A), Piloto Demo(B), Encontro Street/Cars & Coffee/Encontro JDM e três veículos privados. Centro manual inicial emFranca, com pontos de demonstração aproximados e sem endereço privado. O seed não modifica outro ambiente.
 
@@ -156,3 +158,12 @@ RICHARDS, Mark; FORD, Neal. *Fundamentos da Arquitetura de Software* / *Fundamen
 ## Preparação paraGitHub
 
 RepositórioGit local independente, sem histórico privado copiado e semremote criado. Antes de publicação autorizada: verificar `git status`, arquivos rastreados e atribuições. Não adicionar`.venv`,`.artifacts`,infra/local,segredos,build,logs oubinários. Um futuroremote exclusivo pode se chamarNightPoint-Academic. A criação do remote, push e GitHubRelease dependem de autorização posterior; não foram executados por esta preparação.
+
+Somente depois de obter autorização e criar o repositório exclusivo, substituirURL_DO_REPOSITORIO pela URL fornecida:
+
+```text
+git remote add origin URL_DO_REPOSITORIO
+git push -u origin codex/academic-delivery
+```
+
+Esses comandos são instruções futuras, não ações executadas. Binários futuros pertencem aumaRelease autorizada, sem adicioná-los desnecessariamente ao histórico.

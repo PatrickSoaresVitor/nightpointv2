@@ -2,7 +2,8 @@ FROM python:3.13.15-slim-bookworm@sha256:2325bb286ec344af3e5898cc224b5844e2707ac
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_DISABLE_PIP_VERSION_CHECK=1
 WORKDIR /app
 COPY requirements.lock .
-RUN pip install --no-cache-dir --no-deps -r requirements.lock && pip check && useradd --uid 10001 --create-home app
+RUN pip install --no-compile --no-cache-dir --no-deps -r requirements.lock
+RUN pip check && useradd --uid 10001 --create-home app
 COPY pyproject.toml alembic.ini ./
 COPY app ./app
 COPY migrations ./migrations

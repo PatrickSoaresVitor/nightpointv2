@@ -1,0 +1,13 @@
+{
+  "purpose": "Documented defaults; scripts generate the effective local runtime configuration",
+  "identity": "synthetic-local",
+  "web_origin": "http://127.0.0.1:5174",
+  "api_host": "127.0.0.1",
+  "api_port": "allocated by launcher; read .artifacts/academic/current-demo.json",
+  "database_exposure": "private Docker network; no host port",
+  "database_credentials": "generated privately by launcher; never commit",
+  "frontend_entry": "nightpoint/lib/main.dart",
+  "frontend_defines": {"NP_SYNTHETIC": true, "NP_MAP_TILES": true},
+  "map_provider": "OpenStreetMap interactive tiles with visible attribution",
+  "device_location": "explicit consent; foreground memory only; manual fallback"
+}

@@ -21,8 +21,10 @@ def main() -> None:
     project='nightpoint-foundation-audit-'+run_id[:12]
     folder=ROOT/'.artifacts/block03_1'/run_id;private=ROOT/'infra/local/test-runs'/run_id
     initial=json.loads((folder/'preparation.json').read_text())
-    if initial['run_id']!=run_id or initial['project']!=project or initial['attested'] is not False:
-        raise ValueError('Only the explicitly interrupted pre-attestation run may be resumed')
+    if initial['run_id']!=run_id or initial['project']!=project or (folder/'demo-state.json').exists():
+        raise ValueError('Only the explicitly interrupted incomplete run may be resumed')
+    if initial['attested'] is not False and not (folder/'preparation-initial.json').is_file():
+        raise ValueError('Interrupted bootstrap provenance required for attested-stage recovery')
     def command(argv: list[str], capture: bool=True) -> str:
         result=subprocess.run(argv,cwd=ROOT,env=env,capture_output=capture,text=True,check=True,timeout=600)
         return result.stdout if capture else ''
@@ -59,7 +61,8 @@ def main() -> None:
         complete=command(compose+['exec','-T','db','psql','-U','np_admin','-d','nightpoint_test','-Atc','SELECT test_guard.bootstrap_complete()']).strip()
         if complete!='t':raise ValueError('Bootstrap did not complete; no manual marker or schema repair permitted')
         (private/'receipt.json').write_text(json.dumps({'environment':'disposable-test','system_identifier':identifier,'database_oid':int(oid),'token_hash':digest}),encoding='utf-8')
-        (folder/'preparation-initial.json').write_text(json.dumps(initial),encoding='utf-8')
+        if not (folder/'preparation-initial.json').exists():
+            (folder/'preparation-initial.json').write_text(json.dumps(initial),encoding='utf-8')
         (folder/'preparation.json').write_text(json.dumps({**initial,'stage':'attested','attested':True,'resumed_commit':commit}),encoding='utf-8')
         command(compose+['up','--build','-d','--wait','--wait-timeout','180','api'],False)
         api=json.loads(command(['docker','inspect',project+'-api-1']))[0]
