@@ -17,8 +17,8 @@
     {
       "path": "backend/Dockerfile",
       "source_sha256": "129c2172e598b961b16b8a2b86356c754609d344f4cfc135d71184630c8b2898",
-      "packaged_sha256": "129c2172e598b961b16b8a2b86356c754609d344f4cfc135d71184630c8b2898",
-      "adapted": false
+      "packaged_sha256": "37af78685567c225e355a78c7671885383daa4dd2a729af3ae733aa07dd6edd2",
+      "adapted": true
     },
     {
       "path": "backend/alembic.ini",
@@ -683,7 +683,7 @@
     {
       "path": "infra/test_environment.py",
       "source_sha256": "21c54c7cc812c1a0971bec14d150d063ff0dc6085fb704663b0c65208dae52ff",
-      "packaged_sha256": "ba213bddfa8be38cbe436e1c348acbacc5c5c92db357287a0a4505e5ed2c3419",
+      "packaged_sha256": "0a251cf29ceecb4edc9fc479b12f2aabb570597712f06e0f2e7e4f05fbb0f52b",
       "adapted": true
     },
     {
@@ -797,20 +797,20 @@
     {
       "path": "nightpoint/lib/features/events/presentation/event_editor.dart",
       "source_sha256": "b41e1f1313c291a5ac37c09deab73c787784449ebffdccca1c03673f280b7052",
-      "packaged_sha256": "b41e1f1313c291a5ac37c09deab73c787784449ebffdccca1c03673f280b7052",
-      "adapted": false
+      "packaged_sha256": "12b9d11ed876266ac4f8035703ec82b9d1cd357369ee3c9ce17a391464809d22",
+      "adapted": true
     },
     {
       "path": "nightpoint/lib/features/events/presentation/events_model.dart",
       "source_sha256": "32af3c66f6f434ad26f9a8e952e97871e2fd5f089354a096b4b082fe61c8ffad",
-      "packaged_sha256": "32af3c66f6f434ad26f9a8e952e97871e2fd5f089354a096b4b082fe61c8ffad",
-      "adapted": false
+      "packaged_sha256": "5d18d091cc5de5d4006479496b08d6bc4157763f4b393a9cdbdf5766b4f7a781",
+      "adapted": true
     },
     {
       "path": "nightpoint/lib/features/events/presentation/events_page.dart",
       "source_sha256": "10b8fb1231ef666ab5adf7972ab272f1912a56967bb1e7169d50be31b98db256",
-      "packaged_sha256": "10b8fb1231ef666ab5adf7972ab272f1912a56967bb1e7169d50be31b98db256",
-      "adapted": false
+      "packaged_sha256": "7fa6762fd0c4c0914af7b2eb8dfedc8f6078e676ed3521fc0159e3c3ac11cb3d",
+      "adapted": true
     },
     {
       "path": "nightpoint/lib/features/events/presentation/map_model.dart",
@@ -941,8 +941,8 @@
     {
       "path": "nightpoint/test/map_model_test.dart",
       "source_sha256": "63258dc5946b4c6b4badc7a1dc44ae05148c2de7c770cea4ca2a3a391747a521",
-      "packaged_sha256": "63258dc5946b4c6b4badc7a1dc44ae05148c2de7c770cea4ca2a3a391747a521",
-      "adapted": false
+      "packaged_sha256": "5019d8fcdfe5a02c1d3809f2e1166fc0849614eb825ea5063d39d2e34d4f8006",
+      "adapted": true
     },
     {
       "path": "nightpoint/test/position_model_test.dart",
@@ -992,5 +992,12 @@
       "packaged_sha256": "7189b754ac14a710cb11bb3adb156fb96b1fc56b4481c4bbf83253d58a7f90b8",
       "adapted": false
     }
+  ],
+  "academic_adaptations": [
+    "Default academic entry and minimal Flutter dependencies",
+    "Franca demonstration defaults",
+    "Independent image tag and benchmark exclusion",
+    "Owned interrupted startup recovery and command-tree cleanup",
+    "Verified image reuse with exact runtime files and versions"
   ]
 }
