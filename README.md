@@ -121,7 +121,10 @@ Abrir `http://127.0.0.1:5174/`. Não abrir o template `web/index.html` porfileUR
 ```powershell
 $demo = Get-Content .artifacts/academic/current-demo.json -Raw | ConvertFrom-Json
 .venv\Scripts\python.exe scripts/demo_realtime.py --run-id $demo.run_id
+.venv\Scripts\python.exe scripts/verify_demo.py --run-id $demo.run_id
 ```
+
+O segundo script verifica a descoberta porpontos fictícios próximo/distante e a negação de acesso deB ao veículo privado deA. Ambos usam somente aAPI da própria demoatestada, semSQL direto nem credenciais reais.
 
 ## Testes relevantes
 

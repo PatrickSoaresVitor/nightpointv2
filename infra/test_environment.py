@@ -13,6 +13,8 @@ from uuid import uuid4
 from typing import Any, cast
 
 from private_files import create_directory, write_private
+from processes import bounded_run
+from academic_image import verified_image
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -82,7 +84,7 @@ def main() -> None:
     if demo:command += ['-f',str(ROOT/'infra/compose.demo.yaml')]
 
     def run(arguments: list[str], capture: bool = False) -> str:
-        result = subprocess.run(arguments, env=environment, cwd=ROOT, check=True,
+        result = bounded_run(arguments, env=environment, cwd=ROOT, check=True,
                                 capture_output=capture, text=True, timeout=600)
         return result.stdout if capture else ""
 
@@ -118,7 +120,8 @@ def main() -> None:
         (directory / "receipt.json").write_text(json.dumps(receipt), encoding="utf-8")
         (artifacts / "preparation.json").write_text(json.dumps({"commit":source_commit,"project":project,
             "run_id":run_id,"stage":"attested","attested":True}),encoding="utf-8")
-        run(command + ["up", "--build", "-d", "--wait", "--wait-timeout", "180", "api"])
+        cached_image=verified_image(ROOT) if demo else None
+        run(command + ["up", "--no-build" if cached_image else "--build", "-d", "--wait", "--wait-timeout", "180", "api"])
         (artifacts / "source.json").write_text(json.dumps({"commit": source_commit, "project": project,
             "environment": "disposable-attested", "run_id": run_id, "loopback_port":api_port,
             "data_subnet":str(available[0]),"client_subnet":str(available[1]),"api_image_id":json.loads(run(["docker","inspect",run(command+["ps","-q","api"],True).strip()],True))[0]["Image"]}), encoding="utf-8")

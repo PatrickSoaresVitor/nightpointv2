@@ -13,6 +13,8 @@ from uuid import UUID
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'infra'))
 from private_files import verify_private
+from processes import bounded_run
+from academic_image import verified_image
 
 def main() -> None:
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--run-id',required=True)
@@ -26,7 +28,7 @@ def main() -> None:
     if initial['attested'] is not False and not (folder/'preparation-initial.json').is_file():
         raise ValueError('Interrupted bootstrap provenance required for attested-stage recovery')
     def command(argv: list[str], capture: bool=True) -> str:
-        result=subprocess.run(argv,cwd=ROOT,env=env,capture_output=capture,text=True,check=True,timeout=600)
+        result=bounded_run(argv,cwd=ROOT,env=env,capture_output=capture,text=True,check=True,timeout=600)
         return result.stdout if capture else ''
     env=dict(os.environ)
     for name in ['admin_password','runtime_password','migrator_password','test_token','run.json','receipt.json']:
@@ -64,18 +66,20 @@ def main() -> None:
         if not (folder/'preparation-initial.json').exists():
             (folder/'preparation-initial.json').write_text(json.dumps(initial),encoding='utf-8')
         (folder/'preparation.json').write_text(json.dumps({**initial,'stage':'attested','attested':True,'resumed_commit':commit}),encoding='utf-8')
-        command(compose+['up','--build','-d','--wait','--wait-timeout','180','api'],False)
+        reused_image=verified_image(ROOT)
+        command(compose+['up','--no-build' if reused_image else '--build','-d','--wait','--wait-timeout','180','api'],False)
         api=json.loads(command(['docker','inspect',project+'-api-1']))[0]
         db=json.loads(command(['docker','inspect',project+'-db-1']))[0]
         bindings=api['HostConfig']['PortBindings']
-        if set(bindings)!={'8000/tcp'} or len(bindings['8000/tcp'])!=1 or bindings['8000/tcp'][0]['HostIp']!='127.0.0.1' or db['HostConfig']['PortBindings']:
+        if set(bindings)!={'8000/tcp'} or len(bindings['8000/tcp'])!=1 or bindings['8000/tcp'][0]['HostIp']!='127.0.0.1' or bindings['8000/tcp'][0]['HostPort']!=str(port) or db['HostConfig']['PortBindings']:
             raise ValueError('Loopback API/unpublished database isolation required')
         state={'mode':'synthetic','project':project,'run_id':run_id,'commit':commit,'api_url':f'http://127.0.0.1:{port}',
                'web_origin':'http://127.0.0.1:5174','initial_state':'ready-attested','recovered_existing_volume':True,
                'stop_command':f'python infra/stop_demo.py {run_id}'}
         (folder/'demo-state.json').write_text(json.dumps(state,indent=2)+'\n',encoding='utf-8')
         (folder/'source.json').write_text(json.dumps({'commit':commit,'project':project,'run_id':run_id,'api_image_id':api['Image'],'db_image_id':db['Image'],
-                         'loopback_port':port,'resume_initial_commit':initial['commit'],'existing_volume_preserved':True}),encoding='utf-8')
+                         'loopback_port':port,'resume_initial_commit':initial['commit'],'existing_volume_preserved':True,
+                         'reused_verified_image':reused_image}),encoding='utf-8')
         target=ROOT/'.artifacts/academic/current-demo.json';target.parent.mkdir(parents=True,exist_ok=True)
         target.write_text(json.dumps(state,indent=2)+'\n',encoding='utf-8');retained=True
         command([sys.executable,str(ROOT/'infra/seed_demo.py'),'--run-id',run_id],False)

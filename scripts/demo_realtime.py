@@ -26,7 +26,9 @@ def main() -> None:
                 assert response.headers.get_content_type()=='text/event-stream'
                 frame={}
                 while not stop.is_set():
-                    line=response.readline().decode().strip()
+                    raw=response.readline()
+                    if not raw:break
+                    line=raw.decode().strip()
                     if not line:
                         if 'data' in frame:
                             frames.put(frame);ready.set();frame={}
